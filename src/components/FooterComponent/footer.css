@@ -1,0 +1,93 @@
+
+.ft_content ul li{
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+.ft_content ul li a{
+    color: #fff;
+    text-transform: capitalize;
+}
+.ft_content ul li a:hover{
+    margin-left: 10px;
+    color: #ff1744;
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+}
+
+.footer_movie .ft_aboutus{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+.col-3 span{
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+.col-3 h2 span::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #ff1744;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    
+}
+.col-3 h2 span:hover::after{
+    width: 100%;
+    
+}
+
+.social_link .social_icon{
+    display: flex;
+    justify-content: space-between;
+}
+
+.social_link li i {
+    font-size: 30px;
+    transition: all 0.4s ease-in-out;
+}
+.social_icon li i:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.newsletter_input{
+    margin-top: 30%;
+    position: relative;
+}
+.newsletter_input input{
+    width: 100%;
+    border-radius: 100px;
+    background: #fff;
+    border: 1px solid #fff;
+    padding: 7px 16px;
+    height: 42px;
+    color: #fff;
+}
+.newsletter_input input:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: #fff;
+}
+.newsletter_btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #fff;
+    color: #000;
+    border: transparent;
+    border-left: 1px solid #000;
+    padding: 10px 19px;
+    height: 100%;
+    z-index: 10;
+    border-radius: 0 20px 20px 0;
+}
+.newsletter_btn:hover{
+    border-color: #ff1744;
+    background: #ff1744
+}

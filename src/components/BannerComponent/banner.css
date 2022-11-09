@@ -1,0 +1,103 @@
+/* Banner */
+
+.banner {
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+}
+
+.bannerMini {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    transition: all 0.5s;
+    transform: scale(1);
+
+}
+
+.banner_wrap-mini {
+    overflow: hidden;
+}
+
+.banner_wrap-mini:hover .bannerMini {
+    transform: scale(1.2);
+}
+
+.slick-active .banner_play_icon {
+    opacity: 1;
+    cursor: pointer;
+    color: red;
+}
+
+.banner_wrap-icon:hover .banner_play_icon {
+    opacity: 0.5;
+}
+
+.banner_play_icon {
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.banner_wrap-icon-mini {
+    top: -20%;
+    left: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    color: white;
+    transition: all 0.5s;
+}
+
+.banner_wrap-icon-mini:hover .banner_play_icon-mini {
+    opacity: 0.6;
+}
+
+.slick-slide:hover .banner_wrap-icon-mini {
+    top: 40%
+}
+
+.banner_play_icon-mini {
+    font-size: 35px;
+}
+
+.slick-slide:hover .banner_overlay {
+    background: linear-gradient(to top right, rgba(185, 4, 39, 0.72) 19%, rgba(105, 34, 0, 0.6) 80%);
+}
+
+.banner_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #15273999;
+    top: 0;
+    transition: 1s;
+}
+
+.slick-slide:hover .banner_content {
+    top: 55%;
+    height: 50px;
+
+}
+
+.banner_content {
+    top: 70%;
+    position: absolute;
+    z-index: 6;
+    height: 30px;
+    transition: all 0.5s;
+}
+.banner_content-title h6{
+    color: #fff;
+}
+.slick-slide:hover .banner_mota {
+    opacity: 1;
+}
+
+.banner_mota {
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.banner_wrap-mini .banner_overlay {
+    cursor: grab;
+}

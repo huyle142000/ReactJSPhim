@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* color text */
+    --primary-color: #fff;
+    --second-color: #ff1744;
+
+    /* color background */
+    --bg-main-body: #060f19;
+    --bg-main-div: #182028;
+    /* btn color */
+    --btn-primary: #ff1744;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    letter-spacing: 1px;
+    background-color: #080d15;
+}
+
+.movie__title {
+    font-size: 1.875rem;
+    text-align: center;
+    color: #ff1744;
+}
+
+/* Overide css Slick */
+.banner_icon-right,
+.banner_icon-left {
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.slick-slider.slick-initialized:hover .banner_icon-right,
+.slick-slider.slick-initialized:hover .banner_icon-left {
+    opacity: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    display: none;
+}
+
+/* modalCss */
+@media (min-width: 992px) {
+    .modal.show .modal-dialog {
+        max-width: 50% !important;
+    }
+}
+
+.modal-dialog {
+    margin: 6rem auto;
+}
