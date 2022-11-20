@@ -9,7 +9,6 @@ export function getBanner() {
       const { data } = await bothServiceToken.get(
         `QuanLyPhim/LayDanhSachPhim?maNhom=${MA_NHOM}`
       );
-console.log(data)
       dispatch({ type: GET_BANNER, payload: data.content });
     } catch (e) {
       console.log(e.response);
@@ -18,7 +17,6 @@ console.log(data)
 }
 // PlayTrailer
 export function playTrailer(payload) {
-  console.log(payload);
   return (dispatch) => {
     dispatch({ type: PLAY_TRAILER, payload });
   };

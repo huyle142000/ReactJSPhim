@@ -1,7 +1,12 @@
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { DOMAIN_CINEMA, MA_NHOM } from "../../utils/setting";
-import { GET_INFO_FILM, GET_LIST_FILM } from "../type/MovieManagerType";
+import {
+  GET_INFO_FILM,
+  GET_LIST_FILM,
+  GET_DETAIL_FILM,
+} from "../types/MovieManagerType";
 import { history } from "../../App";
+import { toast } from "react-toastify";
 //Get all movies, get movieBy Name
 export function getListMovie(tenPhim = "") {
   return async (dispatch) => {
@@ -16,6 +21,7 @@ export function getListMovie(tenPhim = "") {
       dispatch({ type: GET_LIST_FILM, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -27,10 +33,12 @@ export function uploadMovie(datas) {
         "QuanLyPhim/ThemPhimUploadHinh",
         datas
       );
-      console.log(data);
+      toast.success("Success");
       dispatch(getListMovie());
+      history.push("/admin/movieadmin");
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -41,9 +49,11 @@ export function getInfoMovie(maPhim) {
       const { data } = await bothServiceToken.get(
         `QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`
       );
+
       dispatch({ type: GET_INFO_FILM, payload: data.content });
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -55,12 +65,14 @@ export function editMovie(movie) {
         `QuanLyPhim/CapNhatPhimUpload`,
         movie
       );
-      console.log(data);
+
+      toast.success("Success");
 
       history.push("/admin/movieadmin");
       getListMovie();
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -71,11 +83,13 @@ export function deleteMovie(maPhim) {
       const { data } = await bothServiceToken.delete(
         `QuanLyPhim/XoaPhim?MaPhim=${maPhim}`
       );
-      console.log(data);
+      toast.success("Success");
+
       getListMovie();
       history.go(0);
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
   };
 }
@@ -87,10 +101,29 @@ export function createCalendar(value) {
         `QuanLyDatVe/TaoLichChieu`,
         value
       );
+      toast.success("Success");
+
       getListMovie();
       history.push("/admin/movieadmin");
     } catch (e) {
       console.log(e.response);
+      toast.err("Error!!!");
     }
+  };
+}
+// LayThongTinLichChieuPhim
+export function getReleaseFilm(maPhim) {
+  return (dispatch) => {
+    bothServiceToken
+      .get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`)
+      .then((res) => {
+        dispatch({
+          type: GET_DETAIL_FILM,
+          payload: res.data.content,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }

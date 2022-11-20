@@ -1,212 +1,228 @@
-import "./CinemaComponent.css";
-import React, { useState } from "react";
-import "./lib/Calender";
-import { calender } from "./lib/Calender";
+import "./css/CinemaComponent.css";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CinemaModalComponent from "./CinemaModalComponent";
 import {
+  Calendar,
   getAllCinema,
-  cinemaModalAction,
-  getCinemaClusters,
+  getCinemaCluster,
+  getCinemaRelease,
 } from "../../redux/actions/CinemaAction";
-import { useEffect } from "react";
-import { OPEN_LIST_CINEMA_MODAL } from "../../redux/type/ModalType";
-import { GET_LIST_CINEMA_CLUSTERS } from "../../redux/type/CinemaType";
+import _ from "lodash";
+import moment from "moment";
+import { PLAY_LOADING } from "../../redux/type/SpinnerType";
+import { NavLink } from "react-router-dom";
+import { history } from "../../App";
+let currentDate = moment(new Date()).format("DDMMYY");
 
-export default function CinemaComponent() {
-  const [activeCinemaIndex, setActiveCinemaIndex] = useState(0);
-  const [activeDate, setActiveDate] = useState(0);
-
+const CinemaComponent = () => {
   const dispatch = useDispatch();
-
-  const [cinemaInfo, setCinemaInfo] = useState({
-    img: "",
-    cinemaName: "",
-    address: "",
-  });
-
-  const { currentCinema, arrCinemaCluster, arrCinema } = useSelector(
+  const { currentCinema, arrCinemaRelease, arrCinemaCluster } = useSelector(
     (state) => state.CinemaReducer
   );
+  const [active, setActive] = useState({
+    logoSystem: 0,
+    logoCluster: 0,
+  });
+  const [code, setCode] = useState({
+    cinemaBasicCode: currentCinema[0]?.maHeThongRap,
+    imgLogo: currentCinema[0]?.logo,
+    cinemaReleaseCode: arrCinemaCluster[0]?.maCumRap,
+  });
+  const { renderCalender, release, show, setShow } = Calendar();
 
   useEffect(() => {
-    getCinemaAPI();
+    dispatch(getAllCinema());
   }, []);
-
+  // call khi đổi giá trị
   useEffect(() => {
-    getCinemaClustersAPI();
-  }, [currentCinema]);
-
+    dispatch(getCinemaCluster(code.cinemaBasicCode));
+    dispatch(getCinemaRelease(code.cinemaBasicCode));
+  }, [code.cinemaBasicCode]);
+  //khi thay đổi rạp bằng setcode trong renderSystemCinema thì cho mặc định mã cụm rạp là thằng ban đầu
   useEffect(() => {
-    if (arrCinemaCluster !== undefined) {
-      if (arrCinemaCluster.length > 0) {
-        cinemaActive(0, arrCinemaCluster[0]);
-      }
-    }
+    setCode({
+      ...code,
+      cinemaReleaseCode: arrCinemaCluster[0]?.maCumRap,
+    });
   }, [arrCinemaCluster]);
+  useEffect(() => {
+    let timer1 = setTimeout(() => {
+      return setShow(false);
+    }, 800);
 
-  const getCinemaClustersAPI = () => {
-    if (!currentCinema.maHeThongRap) {
-      return;
-    }
-    let action = getCinemaClusters(currentCinema.maHeThongRap);
-    dispatch(action);
-  };
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [show]);
 
-  const getCinemaAPI = () => {
-    let action = getAllCinema();
-    dispatch(action);
-  };
-
-  const cinemaActive = (index, cinema) => {
-    const { tenCumRap, diaChi } = cinema;
-    setActiveCinemaIndex(index);
-    setCinemaInfo({
-      img: currentCinema["logo"],
-      cinemaName: tenCumRap,
-      address: diaChi,
-    });
-  };
-
-  const renderCinema = () => {
-    return arrCinemaCluster.map((cinema, index) => {
-      let { tenCumRap } = cinema;
+  const renderSystemCinema = () => {
+    return currentCinema?.map((cine, i) => {
       return (
         <div
-          key={index}
+          key={i}
+          className={
+            active.logoSystem === i
+              ? "logo_system cinema_logo-active col"
+              : "logo_system col"
+          }
           onClick={() => {
-            cinemaActive(index, cinema);
+            setActive({ ...active, logoSystem: i, logoCluster: 0 });
+            setCode({
+              ...code,
+              cinemaBasicCode: cine.maHeThongRap,
+              imgLogo: cine.logo,
+            });
+            setShow(true);
           }}
-          className={`cinema__detail px-4 py-2 ${
-            activeCinemaIndex === index ? "active" : ""
-          }`}
         >
-          <div className="cinema__logo__left">
-            <img src={currentCinema["logo"]} alt="" />
-            <span className="pl-3 pr-3">{tenCumRap}</span>
+          <img
+            src={cine.logo}
+            alt=""
+            style={{ width: "60px", height: "60px" }}
+          />
+        </div>
+      );
+    });
+  };
+  const renderClusterCinema = () => {
+    return arrCinemaCluster?.map((cluster, i) => {
+      return (
+        <div
+          key={i}
+          onClick={() => {
+            setActive({ ...active, logoCluster: i });
+            setCode({
+              ...code,
+              cinemaReleaseCode: cluster.maCumRap,
+            });
+            setShow(true);
+          }}
+          className={
+            active.logoCluster === i
+              ? "logo_system cinema_logo-active row py-2"
+              : "logo_system row py-2"
+          }
+        >
+          <div className="col-3 d-flex align-items-center">
+            <img
+              src={code.imgLogo}
+              style={{ width: "40px", height: "40px" }}
+              alt=""
+            />
           </div>
-          <span className="pl-5">
-            <i className="fa-solid fa-chevron-right"></i>
-          </span>
+          <div className="col-9 cinema_title-cluster">
+            <h5 className="cinema_title ">{cluster.tenCumRap}</h5>
+            <h6 className="cinema_title ">{cluster.diaChi}</h6>
+          </div>
         </div>
       );
     });
   };
 
-  const calenderActive = (index) => {
-    setActiveDate(index);
-  };
-
-  const renderCalender = () => {
-    return calender().map((date, index) => {
-      return (
-        <div
-          key={index}
-          onClick={() => {
-            calenderActive(index);
-          }}
-          className={`calender__card ${activeDate === index ? "active" : ""}`}
-        >
-          <div className="calender__header">{date.date}</div>
-          <div className="calender__body">
-            {index === 0 ? "Today" : date.day}
-          </div>
-        </div>
-      );
+  const renderCinemaRelease = () => {
+    let filterArr = arrCinemaRelease?.map((cinema) => {
+      return cinema.lstCumRap.filter((cumRap) => {
+        return code.cinemaReleaseCode === cumRap.maCumRap;
+      });
     });
-  };
-
-  const getCinemaModal = () => {
-    let action = cinemaModalAction(
-      OPEN_LIST_CINEMA_MODAL,
-      <CinemaModalComponent arrCinema={arrCinema} />
-    );
-    dispatch(action);
-  };
-
-  return (
-    <div className="container py-5">
-      <h2 className="movie__title mb-5">Cinema Showtimes</h2>
-      <div className="cinema__content">
-        <div className="cinema__header py-3">
-          <span className="mx-3">Cinema</span>
-          <span
-            onClick={() => {
-              getCinemaModal();
-            }}
-            className="btn--cinema"
-          >
-            {currentCinema.tenHeThongRap}
-            <i className="fa-solid fa-chevron-down pl-4"></i>
-          </span>
-          <div className="modal__cinema"></div>
-        </div>
-        <div className="row">
-          <div className="col-4 cinema__left pr-0">
-            <div className="px-3 py-2">
-              <div className="cinema__search">
-                <input
-                  className="form__cinema py-1 pl-3"
-                  placeholder="Seach cinema ..."
-                ></input>
-                <span className="icon__search">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </span>
-              </div>
-            </div>
-            <div className="cinema__list">{renderCinema()}</div>
-          </div>
-          <div className="col-8 pl-0">
-            <div className="cinema__info">
-              <img
-                src="https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
-                alt=""
-              />
-              <div className="cinema__address pl-2">
-                <h3>Lịch chiếu phim CGV Vincom Đà Nẵng</h3>
-                <p>
-                  Tầng 4, TTTM Vincom Đà Nẵng, đường Ngô Quyền, P.An Hải Bắc,
-                  Q.Sơn Trà, TP. Đà Nẵng
-                </p>
-              </div>
-            </div>
-            <div className="calender">{renderCalender()}</div>
-            <div className="cinema__showTime">
-              <div className="showTime__movie">
-                <div className="row">
-                  <div className="col-2">
-                    <img
-                      className="img-fluid"
-                      src="https://movienew.cybersoft.edu.vn/hinhanh/hieu-test_gp03.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-10">
-                    <div className="movie__content">
-                      <p className="age">16+</p>
-                      <p className="movie__name">Home</p>
-                      <p className="movie__type">Kinh dị, Gây cấn</p>
-                      <p className="mt-3">2D Phụ đề</p>
-                      <div className="showTimes__detail mt-2">
-                        <div className="duration mr-3">
-                          <p>
-                            <strong>14:20 </strong>~ 15.53
-                          </p>
-                        </div>
-                        <div className="duration mr-3">
-                          <p>
-                            <strong>15:20 </strong>~ 16:53
-                          </p>
-                        </div>
-                      </div>
+    filterArr = _.flattenDepth(filterArr, 1);
+    let releaseFilm = [];
+    filterArr?.map((cinema) => {
+      return cinema.danhSachPhim.map((movies, i) => {
+        return movies.lstLichChieuTheoPhim.map((movie, i) => {
+          let convertDate = moment(movie.ngayChieuGioChieu);
+          if (convertDate.format("DDMMYY") === release) {
+            releaseFilm.push(movies);
+          }
+        });
+      });
+    });
+    if (releaseFilm.length !== 0) {
+      releaseFilm = _.uniq(releaseFilm);
+      return releaseFilm?.map((movies, i) => {
+        return (
+          <Fragment key={i}>
+            <div className="col">
+              <div className="row">
+                <div className="col-3 text-center">
+                  <img
+                    src={movies.hinhAnh}
+                    style={{ height: "100%", width: "100%" }}
+                    alt=""
+                  />
+                </div>
+                <div className="col-9 text-left">
+                  <h3 className="cinema_title-release">
+                    {movies.tenPhim}
+                    {movies.hot && (
+                      <span>
+                        <div className="cinema_gif d-inline-block" alt="" />
+                      </span>
+                    )}
+                  </h3>
+                  <div className="mt-3">
+                    <div className="cinema_title-release-date mb-2">
+                      Suất chiếu:
+                    </div>
+                    <div>
+                      {movies.lstLichChieuTheoPhim.map((movie) => {
+                        let convertDate = moment(movie.ngayChieuGioChieu);
+                        if (convertDate.format("DDMMYY") === release) {
+                          return (
+                            <button
+                              className="btn btn_primary m-1"
+                              onClick={() => {
+                                history.push("/booking", { path: movie });
+                              }}
+                            >
+                              {convertDate.format("hh:mm")}
+                            </button>
+                          );
+                        }
+                      })}
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </Fragment>
+        );
+      });
+    } else {
+      return (
+        <div className="cinema_list-film">
+          <h3>
+            Oops!! Không có phim nào chiếu ngày này rồi, bạn chọn ngày khác nhé
+            !!
+          </h3>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="cinema py-5 text-center mt-5">
+      <h2 className="cinema_header">ĐẶT VÉ PHIM ONLINE</h2>
+      <div className="row cinema_header-logo">{renderSystemCinema()}</div>
+      <div className="row cinema__content mt-3">
+        <div className="col-3 cinema__content_left">
+          {renderClusterCinema()}
+        </div>
+        <div className="col-9">
+          <div className="cinema_calender-wrap-top">{renderCalender()}</div>
+          <div className="cinema_calender-wrap-bot height-100 mt-3">
+            <div className="row flex-column position-relative">
+              {show && (
+                <div className="spinner">
+                  <div className="spinner-img"></div>
+                </div>
+              )}
+              {renderCinemaRelease()}
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+export default CinemaComponent;

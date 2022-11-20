@@ -16,7 +16,7 @@ export default function Login() {
       matKhau: ''
     },
     onSubmit: values => {
-      console.log(values);
+      ;
       let action = loginAction(values);
       dispatch(action);
       dispatch({ type: CLOSE_MODAL })

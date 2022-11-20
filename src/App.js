@@ -1,61 +1,125 @@
 import { createBrowserHistory } from "history";
+import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
-import BannerComponent from "./components/BannerComponent/BannerComponent";
-import BlogComponent from "./components/BlogComponent/BlogComponent";
-import Admin from "./pages/Admin/Admin";
-import AddMovie from "./pages/Admin/MovieAdmin/AddMovie/AddMovie";
-import EditMovie from "./pages/Admin/MovieAdmin/EditMovie/EditMovie";
-import MovieAdmin from "./pages/Admin/MovieAdmin/MovieAdmin";
-import ShowtimeAdmin from "./pages/Admin/MovieAdmin/ShowtimeAdmin/ShowtimeAdmin";
+import "react-toastify/dist/ReactToastify.css";
+import InfoUser from "./pages/Admin/UserAdmin/InfoUser/InfoUser";
+const Booking = React.lazy(() => import("./pages/Booking/Booking"));
 
-import UserAdmin from "./pages/Admin/UserAdmin/UserAdmin";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import AdminTemplate from "./Templates/AdminTemplate/AdminTemplate";
-import HomeTemplate from "./Templates/HomeTemplate/HomeTemplate";
-import ModalFilm from "./Templates/ModalFilm/ModalFilm";
+const Detail = React.lazy(() => import("./components/DetailComponent/Detail"));
+const AddMovie = React.lazy(() =>
+  import("./pages/Admin/MovieAdmin/AddMovie/AddMovie")
+);
+const EditMovie = React.lazy(() =>
+  import("./pages/Admin/MovieAdmin/EditMovie/EditMovie")
+);
+const MovieAdmin = React.lazy(() =>
+  import("./pages/Admin/MovieAdmin/MovieAdmin")
+);
+const ShowtimeAdmin = React.lazy(() =>
+  import("./pages/Admin/MovieAdmin/ShowtimeAdmin/ShowtimeAdmin")
+);
+const AddUser = React.lazy(() =>
+  import("./pages/Admin/UserAdmin/AddUser/AddUser")
+);
+const EditUser = React.lazy(() =>
+  import("./pages/Admin/UserAdmin/EditUser/EditUser")
+);
+const User = React.lazy(() => import("./pages/Admin/UserAdmin/User"));
+const Home = React.lazy(() => import("./pages/Home/Home"));
+const Login = React.lazy(() => import("./pages/Login/Login"));
+const AdminTemplate = React.lazy(() =>
+  import("./Templates/AdminTemplate/AdminTemplate")
+);
+const HomeTemplate = React.lazy(() =>
+  import("./Templates/HomeTemplate/HomeTemplate")
+);
+const ModalFilm = React.lazy(() => import("./Templates/ModalFilm/ModalFilm"));
 
 export const history = createBrowserHistory();
 
 function App() {
+  const { isPlay } = useSelector((state) => state.Spinner);
   return (
     <BrowserRouter>
       <Router history={history}>
-        <ModalFilm />
-        <Switch>
-          <HomeTemplate exact path="/home" Component={Home}></HomeTemplate>
+        <React.Suspense
+          fallback={
+            <div className="spinner">
+              <div className="spinner-img"></div>
+            </div>
+          }
+        >
+          {isPlay && (
+            <div className="spinner">
+              <div className="spinner-img"></div>
+            </div>
+          )}
+          <ModalFilm />
+          <Switch>
+            <HomeTemplate exact path="/home" Component={Home}></HomeTemplate>
 
-          {/* default url khi push nhánh nhớ đưa file vào Home*/}
-          <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
-          <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
+            {/* default url khi push nhánh nhớ đưa file vào Home*/}
+            <HomeTemplate exact path="/" Component={Home}></HomeTemplate>
+            <HomeTemplate exact path="/login" Component={Login}></HomeTemplate>
+            {/* ticket */}
+            <HomeTemplate
+              exact
+              path="/booking"
+              Component={Booking}
+            ></HomeTemplate>
+            {/* HomeDetail */}
+            <HomeTemplate
+              exact
+              path="/detail/:maPhim"
+              Component={Detail}
+            ></HomeTemplate>
 
-          {/* admin */}
-          <AdminTemplate exact path="/admin" Component={Admin} />
-          <AdminTemplate exact path="/admin/useradmin" Component={UserAdmin} />
-          <AdminTemplate
-            exact
-            path="/admin/movieadmin"
-            Component={MovieAdmin}
-          />
-          <AdminTemplate
-            exact
-            path="/admin/movieadmin/showtimeadmin/:maPhim"
-            Component={ShowtimeAdmin}
-          />
-          <AdminTemplate
-            exact
-            path="/admin/movieadmin/addmovie"
-            Component={AddMovie}
-          />
-          <AdminTemplate
-            exact
-            path="/admin/movieadmin/editmovie/:maPhim"
-            Component={EditMovie}
-          />
+            {/* admin */}
+            <AdminTemplate exact path="/admin" Component={User} />
+            <AdminTemplate exact path="/admin/useradmin" Component={User} />
+            <AdminTemplate
+              exact
+              path="/admin/edituser/adduser"
+              Component={AddUser}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/edituser/:taiKhoan"
+              Component={EditUser}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/edituser/infouser/:taiKhoan"
+              Component={InfoUser}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/movieadmin"
+              Component={MovieAdmin}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/movieadmin/showtimeadmin/:maPhim"
+              Component={ShowtimeAdmin}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/movieadmin/addmovie"
+              Component={AddMovie}
+            />
+            <AdminTemplate
+              exact
+              path="/admin/movieadmin/editmovie/:maPhim"
+              Component={EditMovie}
+            />
 
-          {/*  */}
-        </Switch>
+            {/*  */}
+          </Switch>
+        </React.Suspense>
+        <ToastContainer />
       </Router>
     </BrowserRouter>
   );

@@ -4,9 +4,35 @@ import "./footer.css"
 
 export default function Footer() {
   return (
-    <div style={{ padding: "100px 0" }}>
+    <div style={{ padding: "50px 0" }}>
       <div className="container">
         <div className="row footer_movie">
+          <div className="col-3">
+            <div className="ft_content ft_aboutus">
+              <div>
+              </div>
+              <p>Mauris malesuada arcu eu posuere eleifen. Ut egestas tortor at leo egestas tincidunt.Mauris malesuada arcu eu posuere eleifen.</p>
+              <div className="social_link">
+                <ul className='d-flex social_icon'>
+                  <li className="bg_fb">
+                    <i className="fa-brands fa-facebook-f"></i>
+                  </li>
+                  <li className="bg_twitter">
+                    <i className="fa-brands fa-twitter"></i>
+                  </li>
+                  <li className="bg_pinterest">
+                    <i className="fa-brands fa-pinterest-p"></i>
+                  </li>
+                  <li className="bg_youtube">
+                    <i className="fa-brands fa-youtube"></i>
+                  </li>
+                  <li className="bg_intagram">
+                    <i className="fa-brands fa-instagram"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <div className="col-3">
             <h2>
               <span>Movie Category</span>
@@ -38,45 +64,43 @@ export default function Footer() {
             </div>
           </div>
           <div className="col-3">
-            <div className="ft_content ft_aboutus">
-              <h2>
-                <span>About us</span>
-              </h2>
-              <p>Mauris malesuada arcu eu posuere eleifen. Ut egestas tortor at leo egestas tincidunt.Mauris malesuada arcu eu posuere eleifen.</p>
-              <div className="social_link">
-                <ul className='d-flex social_icon'>
-                  <li>
-                  <i style={{color:"#3b5998"}} className="fa-brands fa-square-facebook"></i>
-                  </li>
-                  <li>
-                    <i style={{color:"#02b0e8"}} className="fa-brands fa-square-twitter"></i>
-                  </li>
-                  <li>
-                    <i style={{color:"#00a098"}} className="fa-brands fa-square-instagram"></i>
-                  </li>
-                  <li>
-                    <i style={{color:"#c22e2a"}} className="fa-brands fa-youtube"></i>
-                  </li>
-                  <li>
-                    <i style={{color:"#b00a1b"}} className="fa-brands fa-square-pinterest"></i>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-3">
             <div className="newsletter">
               <h2>
                 <span>Newsletter</span>
               </h2>
+              <div className="twitter_content">
+                <h2><span>Twitter</span></h2>
+                <div className="ft-twitter-feed">
+                  <div className="ft_twitter_icon">
+                    <i className="fa-brands fa-twitter"></i>
+                  </div>
+                  <div className="ft_twitter_dec">
+                    <a href="">black-one <span>@24Webpro</span></a>
+                    <p>Lorem Ipsum is simply dumy text of the printing.</p>
+                    <div className="ft_twitter_meta">
+                      <ul className='d-lfex'>
+                        <li><a href="#"><span className="fa fa-mail-reply"></span></a></li>
+                        <li><a href="#"><span className="fa fa-retweet"></span>12</a></li>
+                        <li><a href="#"><span className="fa fa-heart"></span>21</a></li>
+                        <li><a href="#"><span className="fa fa-ellipsis-h"></span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="newsletter_input">
-                  <input type="text" className="form-control" placeholder="Email Address" />
-                  <button className="newsletter_btn">
-                    <span style={{color:"#000"}} className="fa fa-paper-plane" />
-                  </button>
-              </div>   
-              <p className='pt-3'>Email:moviesupport@gmail.com</p>          
+                <input type="text" className="form-control" placeholder="Email Address" />
+                <button className="newsletter_btn">
+                  <span style={{ color: "#000" }} className="fa fa-paper-plane" />
+                </button>
+              </div>
+              <p className='pt-3'>Email:moviesupport@gmail.com</p>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="coppyright">
+            <p>CopyRight© 2022 <a href="#">Themepul</a> . All Rights Reserved.</p>
           </div>
         </div>
       </div>

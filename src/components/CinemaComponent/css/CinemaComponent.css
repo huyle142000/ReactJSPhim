@@ -1,0 +1,204 @@
+.cinema__content {
+    border: 1px solid #424e61;
+    box-shadow: 0 2px 8px 0 rgba(76, 104, 120, 0.47);
+}
+
+.cinema_release {
+    text-align: center;
+    padding: 4px;
+
+}
+
+.cinema_release-active {
+    background-color: var(--second-color);
+}
+
+.cinema_logo-active {
+    background-color: rgb(24, 24, 91);
+}
+
+.cinema_header-logo .logo_system {
+    margin: 0;
+}
+
+.logo_system {
+    cursor: pointer;
+    text-align: center;
+    margin-top: 17px;
+}
+
+.cinema_title {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.cinema {
+    padding: 0 150px;
+}
+
+.logo_system:first-child {
+    margin-top: 0;
+}
+
+.cinema_release-date {
+    position: relative;
+    font-weight: 600;
+    padding: 4px;
+    display: inline-block;
+}
+
+.cinema_release-label {
+    padding: 10px;
+}
+
+.cinema_release-input {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+}
+
+.cinema_release-label.active {
+    border-left: 1px solid yellow;
+    border-right: 1px solid yellow;
+
+}
+
+.cinema_release-label.active .cinema_release-date {
+    background-color: yellow;
+    border-radius: 50%;
+
+}
+
+.cinema_release-label.active .cinema_release-day {
+    color: yellow;
+}
+
+.cinema_release-label.active .cinema_release-date {
+    color: #000;
+}
+
+.cinema_release-day {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0;
+}
+
+.cinema_text {
+    font-weight: 500
+}
+
+.cinema_text-year {
+    font-size: 15px;
+    color: yellow;
+}
+
+.cinema_text-month {
+    font-size: 25px;
+}
+
+
+.cinema_calender-wrap-top {
+    flex: 30%;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.cinema_calender-wrap-bot,
+.cinema__content_left {
+    position: relative;
+    flex: 70%;
+    padding: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+
+    overflow-x: hidden;
+}
+.cinema_calender-wrap-bot .row{
+    padding: 10px 20px;
+}
+
+.cinema_gif {
+    background-image: url("./hothothot.gif");
+    background-position: center;
+    background-size: cover;
+    height: 30px;
+    width: 50px;
+}
+
+.cinema_title-release {
+    color: yellow;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.cinema_title-release-date {
+    font-weight: 400;
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.cinema_title-release-date span {
+    color: red;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cinema_title-release-ticket {
+    color: #0be00b;
+    ;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cinema_gif-ticket {
+    background-image: url("./monophy.gif");
+    background-position: center;
+    background-size: cover;
+    height: 30px;
+    width: 50px;
+    display: inline-block;
+}
+
+.cinema_ticket-wrap {
+    font-size: 15px;
+}
+
+.cinema_ticket-tap {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cinema_ticket-btn {
+    background-color: #ffc107;
+    box-shadow: 0 0 5px rgb(239, 239, 119);
+    color: black;
+}
+
+.cinema_header {
+    color: #000;
+    margin: 40px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.cinema_list-film {
+    margin: 100px;
+}
+
+.cinema_list-film h3 {
+    color: red;
+}
+
+.cinema_title-release-date,
+.cinema_ticket-wrap {
+    font-weight: 600;
+}
+
+.cinema_title-cluster h5 {
+    color: rgb(198, 246, 5);
+}

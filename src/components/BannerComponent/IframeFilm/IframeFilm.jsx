@@ -1,6 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import "./modaliframe.css";
+export default function IframeFilm({ phim, isContent }) {
+  let { trailer } = phim;
+  trailer = trailer.replace("watch?v=", "embed/");
 
-export default function IframeFilm({ trailer }) {
   return (
     <>
       <iframe
@@ -15,6 +19,28 @@ export default function IframeFilm({ trailer }) {
         frameBorder={0}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       />
+      {isContent && (
+        <div className="row iframe_modal p-3">
+          <div className=" col-sm-12 col-lg-4">
+            <img src={phim.hinhAnh} alt="" />
+          </div>
+          <div className=" col-sm-12 col-lg-8 content">
+            <h5>{phim.tenPhim}</h5>
+            <h6>
+              <div className="text-danger mt-1 mb-2">Mô tả</div>
+              {phim.moTa?.length > 50
+                ? phim.moTa?.substring(0, 150) + "..."
+                : phim.moTa}
+            </h6>
+            <div className="text-center">
+
+            <NavLink to={`/detail/${phim.maPhim}`}>
+              <button className="btn btn_primary">Buy ticket</button>
+            </NavLink>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

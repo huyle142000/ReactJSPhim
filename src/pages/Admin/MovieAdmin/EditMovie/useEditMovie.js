@@ -44,7 +44,7 @@ export const useEditMovie = (props) => {
           }
         }
       }
-      console.log(values);
+      ;
       dispatch(editMovie(formData));
       setImgSrc("");
       resetForm();

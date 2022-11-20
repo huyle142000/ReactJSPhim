@@ -35,7 +35,7 @@ export const useAddMovie = () => {
           formData.append("File", values.hinhAnh, values.hinhAnh.name);
         }
       }
-      console.log(values);
+      ;
       dispatch(uploadMovie(formData));
       setImgSrc("")
       resetForm();

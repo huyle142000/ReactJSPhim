@@ -55,7 +55,7 @@ const ShowtimeAdmin = (props) => {
       giaVe: 0,
     },
     onSubmit: (value) => {
-      dispatch(createCalendar (value));
+      dispatch(createCalendar(value));
     },
   });
   const { setFieldValue, handleSubmit } = formik;
@@ -79,7 +79,7 @@ const ShowtimeAdmin = (props) => {
   // handleChange
   // thẻ của antd lấy ra các giá trị là value, option là object value và label
   const handleChangeHeThongRap = async (value) => {
-    console.log(value)
+    
     try {
       const { data } = await bothServiceToken.get(
         `QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${value}`
@@ -94,7 +94,7 @@ const ShowtimeAdmin = (props) => {
     }
   };
   const handleChangeMaRap = (value) => {
-    console.log(value)
+    
     setFieldValue("maRap", value);
   };
   const handleChangeNgayChieu = (value) => {

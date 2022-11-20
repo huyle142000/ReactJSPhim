@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
+
 export default function AdminTemplate(props) {
   const [collapsed, setCollapsed] = useState(false);
   const { Component, ...rest } = props;
@@ -27,7 +28,7 @@ export default function AdminTemplate(props) {
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={[]}
+                defaultSelectedKeys={['1']}
                 items={[
                   {
                     key: "1",
@@ -90,3 +91,4 @@ export default function AdminTemplate(props) {
     />
   );
 }
+
