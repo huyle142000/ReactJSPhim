@@ -55,11 +55,9 @@
     padding: 2px;
     top: 0px;
     left: 0px;
-    background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0,
-        rgba(255, 255, 255, 0.3)
-    );
+    background-image: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.3));
 }
 
 .seat__selected {
@@ -125,9 +123,15 @@
 }
 
 .movie__info h3 {
-    font-size: 0.8rem;
-    color: darkgrey;
+    font-size: 3vw;
+    font-weight: 600;
+    color: orange;
     text-transform: uppercase;
+}
+
+.movie__info p {
+    font-size: 0.8rem;
+
 }
 
 .ticket__total {
@@ -157,6 +161,7 @@
 .total__price {
     font-weight: bold;
 }
+
 .btn--payment {
     width: 100%;
 }
@@ -169,3 +174,27 @@
 .calender__ticket p {
     font-weight: bold;
 }
+
+
+/* ------------------Media Query---------------- */
+@media (max-width: 576px) {
+
+    .calender__container {
+        justify-content: center;
+        align-items: center;
+    }
+    .ticket__info img{
+        height: 180px;
+        width: 120px;
+    }
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

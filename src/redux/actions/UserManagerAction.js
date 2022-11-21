@@ -18,9 +18,7 @@ export function getListUser(user = "") {
       }
       const { data } = await bothServiceToken.get(url);
       dispatch({ type: GET_LIST_USER, payload: data.content });
-      console.log(data);
     } catch (e) {
-      console.log(e.response);
     }
   };
 }
@@ -31,10 +29,8 @@ export function getTypeUser() {
       const { data } = await bothServiceToken.get(
         "QuanLyNguoiDung/LayDanhSachLoaiNguoiDung"
       );
-      console.log(data);
       dispatch({ type: GET_TYPE_USER, payload: data.content });
     } catch (e) {
-      console.log(e.response);
     }
   };
 }
@@ -45,10 +41,8 @@ export function getInfoUser(ma) {
       const { data } = await bothServiceToken.post(
         `QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${ma}`
       );
-      console.log(data);
       dispatch({ type: GET_INFO_USER, payload: data.content });
     } catch (e) {
-      console.log(e.response);
     }
   };
 }
@@ -60,12 +54,10 @@ export function editUser(user) {
         `QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
         user
       );
-      console.log(data);
       history.push("/admin/useradmin");
       toast.success("Success");
       getListUser();
     } catch (e) {
-      console.log(e.response);
     }
   };
 }
@@ -76,12 +68,10 @@ export function deleteUser(user) {
       const { data } = await bothServiceToken.delete(
         `QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${user}`
       );
-      console.log(data);
       toast.success("Success");
 
       getListUser();
     } catch (e) {
-      console.log(e.response);
     }
   };
 }
@@ -93,13 +83,11 @@ export function createUser(value) {
         `QuanLyNguoiDung/ThemNguoiDung`,
         value
       );
-      console.log(data);
       toast.success("Success");
 
       getListUser();
       history.push("/admin/useradmin");
     } catch (e) {
-      console.log(e.response);
     }
   };
 }

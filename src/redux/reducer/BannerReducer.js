@@ -7,7 +7,7 @@ const initialState = {
 export const BannerReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_BANNER:
-      state.arrPhim = action.payload.slice(0, 8);
+      state.arrPhim = action.payload;
       return { ...state };
 
     default:

@@ -1,11 +1,12 @@
 import { createBrowserHistory } from "history";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import InfoUser from "./pages/Admin/UserAdmin/InfoUser/InfoUser";
+import Profile from "./pages/Profile/Profile";
 const Booking = React.lazy(() => import("./pages/Booking/Booking"));
 
 const Detail = React.lazy(() => import("./components/DetailComponent/Detail"));
@@ -41,6 +42,7 @@ const ModalFilm = React.lazy(() => import("./Templates/ModalFilm/ModalFilm"));
 export const history = createBrowserHistory();
 
 function App() {
+  const [isLight, setTheme] = useState(true);
   const { isPlay } = useSelector((state) => state.Spinner);
   return (
     <BrowserRouter>
@@ -57,6 +59,30 @@ function App() {
               <div className="spinner-img"></div>
             </div>
           )}
+          <div className="change_theme">
+            {isLight && (
+              <button
+                className="btn"
+                onClick={() => {
+                  setTheme(!isLight);
+                  document.querySelector("body").classList.add("dark")
+                }}
+              >
+                <i className="fa-solid fa-moon"></i>
+              </button>
+            )}
+            {!isLight && (
+              <button
+                className="btn"
+                onClick={() => {
+                  setTheme(!isLight);
+                  document.querySelector("body").classList.remove("dark")
+                }}
+              >
+                <i className="fa-solid fa-sun"></i>
+              </button>
+            )}
+          </div>
           <ModalFilm />
           <Switch>
             <HomeTemplate exact path="/home" Component={Home}></HomeTemplate>
@@ -117,6 +143,7 @@ function App() {
             />
 
             {/*  */}
+            <HomeTemplate exact path="/profile" Component={Profile} />
           </Switch>
         </React.Suspense>
         <ToastContainer />

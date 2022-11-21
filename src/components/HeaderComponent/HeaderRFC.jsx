@@ -1,33 +1,69 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
-import { OPEN_LOGIN, OPEN_REGISTER } from "../../redux/type/FormType";
+import { getUserInfoAction } from "../../redux/actions/FormAction";
+import { LOGOUT, OPEN_LOGIN, OPEN_REGISTER, USER_LOGIN, USER_PROFILE } from "../../redux/type/FormType";
+import { BothTokenService } from "../../Service/BothTokenService";
 import "./header.css";
 
 export default function Header() {
+    const [active, setActive] = useState(false)
     const { uLogin } = useSelector(state => state.FormReducer);
     const dispatch = useDispatch();
     useEffect(() => {
-        renderAccount();
+        renderAccount();     
     }, [uLogin])
-
+    
     const openModalLogin = () => dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
     const openModalRegister = () => dispatch({ type: OPEN_REGISTER, modalRegister: <Register /> });
+    const logout = () => dispatch({type: LOGOUT});
+    const goToProfile= () => {
+        // let getService = new BothTokenService();
+        // let action = getService.post("QuanLyNguoiDung/ThongTinTaiKhoan");
+        // dispatch(action)
+
+        let userProfile = JSON.parse(localStorage.getItem(USER_LOGIN))
+        dispatch({type:USER_PROFILE, userProfile: userProfile})
+    };
+
+    
     let renderAccount = () => {
-        if (uLogin != null) {
+        if (uLogin !== undefined) {
             // đã đăng nhập
-            return <span className="px-3" onClick={() => {
-                openModalLogin()
-            }}>{uLogin.hoTen}</span>
+            return (
+                <div className="header_login">
+                    <div className="header_user header_account" onClick={() => {
+                        setActive(!active)
+                    }}>{uLogin.hoTen}
+                    </div>   
+                    <div className="user_profile" style={{display:`${active ? "block" : "none"}`}}>
+                        <NavLink  to="/profile"  onClick={() => {
+                            goToProfile();
+                        }} className="user_detail">User Profile</NavLink>
+                        <div onClick={() => {
+                            logout();
+                        }} className="user_logout">Log out</div>
+                    </div>             
+                </div>       
+            )
         } else {
-            return <span className="px-3" onClick={() => {
-                openModalLogin()
-            }}>Login</span>
+            return(
+                <>
+                    <div className="header_user" onClick={() => {
+                        openModalLogin()
+                    }}>Login</div>
+                    <div className="header_user" onClick={() => {
+                        openModalRegister()
+                    }}>Register</div>
+                </>
+                
+            )
         }
     }
 
+    
     return (
         <header className="nav__bg">
             <div className="container">
@@ -81,16 +117,8 @@ export default function Header() {
                                 </NavLink>
                             </li>
                         </ul>
-                        <div>
+                        <div className="d-flex">
                             {renderAccount()}
-                            {/* {uLogin ? <span className="px-3" onClick={() => {
-                                openModalLogin()
-                            }}>{uLogin.hoTen}</span> : <span className="px-3" onClick={() => {
-                                openModalLogin()
-                            }}>Login</span>} */}
-                            <span className="px-3" onClick={() => {
-                                openModalRegister()
-                            }}>Register</span>
                         </div>
                     </div>
                 </nav>

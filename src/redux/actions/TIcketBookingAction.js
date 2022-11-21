@@ -14,10 +14,8 @@ export const getSeatBookingAction = (showTimeId) => {
           type: GET_SEAT,
           arrSeat: res.data.content,
         });
-        console.log(res.data.content);
       })
       .catch((err) => {
-        console.log([err]);
       });
   };
 };
@@ -32,7 +30,6 @@ export const bookTicketAction = (seatBookingModel) => {
         });
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 };

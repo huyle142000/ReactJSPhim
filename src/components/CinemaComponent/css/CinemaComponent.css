@@ -1,3 +1,7 @@
+.cinema {
+    background-color: var(--bg-main-body);
+}
+
 .cinema__content {
     border: 1px solid #424e61;
     box-shadow: 0 2px 8px 0 rgba(76, 104, 120, 0.47);
@@ -13,32 +17,16 @@
     background-color: var(--second-color);
 }
 
-.cinema_logo-active {
-    background-color: rgb(24, 24, 91);
+.cinema_header-logo {
+    padding: 0 130px;
 }
 
 .cinema_header-logo .logo_system {
     margin: 0;
 }
 
-.logo_system {
-    cursor: pointer;
-    text-align: center;
-    margin-top: 17px;
-}
-
-.cinema_title {
-    margin: 0;
-    color: #fff;
-    font-size: 16px;
-}
-
 .cinema {
     padding: 0 150px;
-}
-
-.logo_system:first-child {
-    margin-top: 0;
 }
 
 .cinema_release-date {
@@ -70,27 +58,12 @@
 
 }
 
-.cinema_release-label.active .cinema_release-day {
-    color: yellow;
-}
-
 .cinema_release-label.active .cinema_release-date {
     color: #000;
 }
 
-.cinema_release-day {
-    font-weight: 600;
-    font-size: 18px;
-    margin: 0;
-}
-
 .cinema_text {
     font-weight: 500
-}
-
-.cinema_text-year {
-    font-size: 15px;
-    color: yellow;
 }
 
 .cinema_text-month {
@@ -116,20 +89,15 @@
 
     overflow-x: hidden;
 }
-.cinema_calender-wrap-bot .row{
+
+.cinema_calender-wrap-bot .row {
     padding: 10px 20px;
 }
 
-.cinema_gif {
-    background-image: url("./hothothot.gif");
-    background-position: center;
-    background-size: cover;
-    height: 30px;
-    width: 50px;
-}
+
 
 .cinema_title-release {
-    color: yellow;
+    color: var(--bg-calendar);
     font-size: 22px;
     font-weight: 600;
 }
@@ -178,27 +146,95 @@
 }
 
 .cinema_header {
-    color: #000;
+    color: var(--third-color);
     margin: 40px 0;
     padding: 10px;
     border-radius: 10px;
-    background-color: yellow;
+    background-color: var(--bg-calendar);
     font-weight: bold;
+    font-size: 3vw;
+
 }
 
 .cinema_list-film {
-    margin: 100px;
+    margin: 60px;
 }
 
-.cinema_list-film h3 {
-    color: red;
-}
 
 .cinema_title-release-date,
 .cinema_ticket-wrap {
     font-weight: 600;
 }
 
-.cinema_title-cluster h5 {
-    color: rgb(198, 246, 5);
+
+/* ------------------Media Query---------------- */
+@media (max-width: 576px) {
+    .slick-dots {
+        display: none !important;
+    }
+
+    .cinema {
+        padding: 0px 10px;
+    }
+
+    .cinema_calender-wrap-bot .row {
+        padding: 5px;
+    }
+
+    .cinema_title-release {
+        font-size: 10px;
+    }
+
+    .cinema_list-film {
+        margin: 40px;
+    }
+
+    .cinema__content_left .cinema_ClusterCinema {
+        flex-wrap: nowrap;
+        max-height: 130px;
+        overflow-x: auto;
+        overflow-y: hidden !important;
+    }
+
+    .cinema__content_left .cinema_ClusterCinema::-webkit-scrollbar-track {
+        border: 1px solid #000;
+        /* padding: 2px 0; */
+        background-color: #fff;
+    }
+
+    .cinema__content_left .cinema_ClusterCinema::-webkit-scrollbar {
+        width: 10px;
+        margin-top: 10px;
+    }
+
+    .cinema__content_left .cinema_ClusterCinema::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background: var(--bg-main-div);
+        border: 1px solid #000;
+    }
 }
+
+@media (min-width: 576px) {
+    .cinema {
+        padding: 0px 10px;
+    }
+
+    .cinema_calender-wrap-bot .row {
+        padding: 5px;
+    }
+
+    .cinema_title-release {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cinema {
+        padding: 0px 30px;
+    }
+}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

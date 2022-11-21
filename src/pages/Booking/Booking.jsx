@@ -85,7 +85,6 @@ export default function Booking(props) {
       if (indexSelectedSeat !== -1) {
         selectedSeatClass = "seat__selected";
       }
-      console.log(seat);
       return (
         <Fragment key={maGhe}>
           <div
@@ -182,7 +181,7 @@ export default function Booking(props) {
       </div>
       <div className="container my-4">
         <div className="row">
-          <div className="col-9">
+          <div className="col-12 col-sm-12 col-lg-9 ">
             <div className="booking__left">
               <div className="screen"></div>
               <div className="screen__shape text-center mb-4"></div>
@@ -199,9 +198,9 @@ export default function Booking(props) {
               </div>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-sm-12 col-lg-3 ">
             <div className="card__shadow pl-3 pb-3">
-              <div className="ticket__info">{renderMovieInfo()}</div>
+              <div className="ticket__info text-center">{renderMovieInfo()}</div>
             </div>
           </div>
         </div>

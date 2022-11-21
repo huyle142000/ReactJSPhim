@@ -4,7 +4,7 @@ import {
   GET_INFO_FILM,
   GET_LIST_FILM,
   GET_DETAIL_FILM,
-} from "../types/MovieManagerType";
+} from "../type/MovieManagerType";
 import { history } from "../../App";
 import { toast } from "react-toastify";
 //Get all movies, get movieBy Name
@@ -20,8 +20,21 @@ export function getListMovie(tenPhim = "") {
       const { data } = await bothServiceToken.get(url);
       dispatch({ type: GET_LIST_FILM, payload: data.content });
     } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
+      toast.error("Error!!!");
+    }
+  };
+}
+//get InfoFilm to edit
+export function getInfoMovie(maPhim) {
+  return async (dispatch) => {
+    try {
+      const { data } = await bothServiceToken.get(
+        `QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`
+      );
+
+      dispatch({ type: GET_INFO_FILM, payload: data.content });
+    } catch (e) {
+      toast.error("Error!!!");
     }
   };
 }
@@ -37,23 +50,7 @@ export function uploadMovie(datas) {
       dispatch(getListMovie());
       history.push("/admin/movieadmin");
     } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
-    }
-  };
-}
-//get InfoFilm to edit
-export function getInfoMovie(maPhim) {
-  return async (dispatch) => {
-    try {
-      const { data } = await bothServiceToken.get(
-        `QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`
-      );
-
-      dispatch({ type: GET_INFO_FILM, payload: data.content });
-    } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
+      toast.error("Error!!!");
     }
   };
 }
@@ -65,14 +62,12 @@ export function editMovie(movie) {
         `QuanLyPhim/CapNhatPhimUpload`,
         movie
       );
-
       toast.success("Success");
 
       history.push("/admin/movieadmin");
       getListMovie();
     } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
+      toast.error("Error!!!");
     }
   };
 }
@@ -88,8 +83,7 @@ export function deleteMovie(maPhim) {
       getListMovie();
       history.go(0);
     } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
+      toast.error("Error!!!");
     }
   };
 }
@@ -106,8 +100,7 @@ export function createCalendar(value) {
       getListMovie();
       history.push("/admin/movieadmin");
     } catch (e) {
-      console.log(e.response);
-      toast.err("Error!!!");
+      toast.error("Error!!!");
     }
   };
 }
@@ -123,7 +116,6 @@ export function getReleaseFilm(maPhim) {
         });
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 }

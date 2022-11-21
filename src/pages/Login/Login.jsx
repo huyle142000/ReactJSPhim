@@ -16,10 +16,8 @@ export default function Login() {
       matKhau: ''
     },
     onSubmit: values => {
-      ;
       let action = loginAction(values);
       dispatch(action);
-      dispatch({ type: CLOSE_MODAL })
     },
   })
 
@@ -35,13 +33,15 @@ export default function Login() {
           <input onChange={formik.handleChange} type="password" name="matKhau" required />
           <label>Password</label>
         </div>
-        <button style={{ width: "70%", margin: "40px auto 0" }} className={styles.form_submit}>
-          <span />
-          <span />
-          <span />
-          <span />
-          Submit
-        </button>
+        <div className='btn_div'>
+          <button className="btn_movie">
+            Submit
+            <span />
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </form>
     </div>
   );

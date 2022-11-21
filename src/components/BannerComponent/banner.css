@@ -90,7 +90,7 @@
 
 .banner_content-title h6 {
     font-size: 1.6vw;
-    color: orange;
+    color: var(--white-yellow);
     margin: 0;
 }
 
@@ -114,20 +114,24 @@
     cursor: grab;
 }
 
-.bannerMini-star {
+.bannerMini-date {
     display: block;
     position: absolute;
-    width: 40px;
     top: 5%;
-    background-image: linear-gradient(#232526, #414345);
+    background-color: var(--pink-yellow);
     z-index: 12;
-    color: black;
+    padding: 1px;
+    color: var(--third-color);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 
 }
 
-
+.bannerMini-date span {
+    display: block;
+    font-size: 1vw;
+    font-weight: 600;
+}
 
 .bannerMini-star i {
     color: yellow;
@@ -165,13 +169,13 @@
 }
 
 .banner_content-mid h2 {
-    font-size: 3.2vw;
-    color: orange;
+    font-size: 3vw;
+    color: var(--pink-yellow);
     font-weight: 600;
 }
 
 .banner_content-mid h4 {
-    font-size: 2vw;
+    font-size: 1.8vw;
     color: white;
     font-weight: 600;
 }
@@ -189,10 +193,196 @@
 
 }
 
+/* Slick */
+.slick-dots {
+    bottom: 15px;
+}
+
+.slick-dots li button:before {
+    font-size: 10px;
+
+    color: rgba(220, 209, 209, 0.888)
+}
+
+.slick-dots li.slick-active button:before {
+    font-size: 14px;
+    color: rgb(255, 192, 19)
+}
+
+.star {
+    font-size: 8px;
+    position: absolute;
+    z-index: 12;
+    animation: fadeIn 5s infinite;
+    animation-duration: 1200ms;
+    color: rgb(214, 220, 20);
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+
+    100% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.star1 {
+    top: 0;
+    z-index: 12;
+    left: 0;
+}
+
+.star2 {
+    bottom: 13px;
+    left: 11px;
+    animation-delay: 100ms
+}
+
+.star3 {
+    bottom: 9px;
+    left: 35px;
+    animation-delay: 500ms
+}
+
+.star4 {
+    bottom: 70%;
+    left: 23%;
+    animation-delay: 800ms
+}
+
+.star5 {
+    top: 0;
+    right: 55%;
+    animation-delay: 1500ms;
+
+}
+
+.star6 {
+    bottom: 20%;
+    right: 50%;
+    animation-delay: 2300ms;
+
+}
+
+.star7 {
+    top: 10%;
+    right: 45%;
+    animation-delay: 2500ms;
+
+}
+
+.star8 {
+    top: 0;
+    right: 18%;
+    animation-delay: 3200ms
+}
+
+.star9 {
+    bottom: 20%;
+    right: 9%;
+    animation-delay: 3500ms
+}
+
+.star10 {
+    top: 0;
+    right: 0;
+    animation-delay: 3700ms
+}
+
+.text-shadow {
+    font-weight: 600;
+    font-size: 2.8vw;
+}
+
+.text-shadow.banner-dangchieu {
+    color: #fff;
+}
+
+.banner-sapchieu {
+    text-shadow: 0px 0px 20px #93dfe2;
+    color: var(--primary-color);
+}
+
+.banner-dangchieu {
+    text-shadow: 0px 0px 20px #00f7ff;
+
+}
+
+.banner_top {
+    background-color: var(--bg-dark);
+
+}
+
+
+.banner_top-img1 {
+    background-image: url("https://static.mservice.io/img/momo-upload-api-210701105436-637607336767432408.jpg");
+    height: 100%;
+    background-size: cover;
+    background-position: top;
+
+}
+
+.banner_top-img2 {
+    background-image: url("https://static.mservice.io/img/momo-upload-api-210701105436-637607336767432408.jpg");
+    height: 100%;
+    background-size: cover;
+    background-position: bottom;
+}
+
+
 @media (max-width: 576px) {
+    body {
+        /* overflow: hidden; */
+    }
+
+    .date-content {
+        flex-wrap: nowrap;
+        max-height: 120px;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    .date-content::-webkit-scrollbar-track {
+        border: 1px solid #000;
+        background-color: #aca7a7;
+    }
+
+    .date-content::-webkit-scrollbar {
+        width: 10px;
+        margin-top: 10px;
+        height: 5px;
+    }
+
+    .date-content::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #334352;
+        border: 1px solid #000;
+    }
+
+    .text-shadow {
+        font-size: 4vw;
+    }
+
+    .star {
+        font-size: 3px;
+    }
+
     .bannerMini {
         height: 200px;
     }
+
+    .bannerMini-date span {
+        display: block;
+        font-size: 1.4vw;
+    }
+
 
     .banner {
         height: 300px;
@@ -208,10 +398,27 @@
     }
 
     .banner_content-title h6 {
-        font-size: 3vw;
-        color: orange;
+        font-size: 2.4vw;
         margin: 0;
     }
 
 }
 
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {
+
+    .banner_content-mid h4 {
+        font-size: 1.4vw;
+    }
+
+    .banner_content-mid h2 {
+        font-size: 2.4vw;
+    }
+
+
+}
+
+@media (min-width: 1200px) {}

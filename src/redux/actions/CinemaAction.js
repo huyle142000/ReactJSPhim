@@ -20,9 +20,7 @@ export const getAllCinema = () => {
           arrCinema: res.data.content,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 };
 
@@ -31,15 +29,12 @@ export const getCinemaCluster = (payload) => {
     bothServiceToken
       .get(`QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${payload}`)
       .then((res) => {
-        // console.log(res.data);
         dispatch({
           type: GET_LIST_CINEMA_CLUSTERS,
           arrCinema: res.data.content,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 };
 export const getCinemaRelease = (payload) => {
@@ -49,15 +44,12 @@ export const getCinemaRelease = (payload) => {
         `QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${payload}&maNhom=${MA_NHOM}`
       )
       .then((res) => {
-        // console.log(res.data);
         dispatch({
           type: GET_LIST_CINEMA_RELEASE,
           arrCinema: res.data.content,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 };
 export function getReleaseFilm(maPhim) {
@@ -70,15 +62,12 @@ export function getReleaseFilm(maPhim) {
           payload: res.data.content,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 }
 
 export const Calendar = () => {
   let dateNew = new Date();
-  console.log(moment(dateNew).format("DDMMYY"));
   let currentDate = moment(dateNew).format("DDMMYY");
 
   const [release, setReleases] = useState(currentDate);
@@ -95,19 +84,19 @@ export const Calendar = () => {
       clearTimeout(timer1);
     };
   }, [show]);
-  const renderCalender = () => {
-    var date = new Date();
-    const arr = [];
-    let times;
-    for (let i = 0; i < 8; i++) {
-      if (i === 0) {
-        times = moment(date.setDate(date.getDate()));
-      } else {
-        times = moment(date.setDate(date.getDate() + 1));
-      }
-
-      arr.push(times);
+  // Create Calendar
+  const arr = [];
+  var date = new Date();
+  let times;
+  for (let i = 0; i < 8; i++) {
+    if (i === 0) {
+      times = moment(date.setDate(date.getDate()));
+    } else {
+      times = moment(date.setDate(date.getDate() + 1));
     }
+    arr.push(times);
+  }
+  const renderCalender = () => {
     const month = moment(date).format("MMMM ");
     const year = moment(date).format(" YYYY");
     return (
@@ -119,11 +108,9 @@ export const Calendar = () => {
           <span className="cinema_text-month cinema_text">{month}</span>
           <span className="cinema_text-year">{year}</span>
         </div>
-        <div className="row pl-2 pr-2">
+        <div className="row pl-2 pr-2 date-content">
           {arr.map((time, i) => {
-            // console.log(moment(time).format("DD"));
             let a = moment(time).isoWeekday();
-            console.log(a);
             return (
               <div key={i} className={"col cinema_release"}>
                 <label
@@ -168,5 +155,5 @@ export const Calendar = () => {
       </>
     );
   };
-  return { renderCalender, release, show, setShow };
+  return { renderCalender, release, show, setShow, arr };
 };

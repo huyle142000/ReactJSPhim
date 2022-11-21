@@ -289,10 +289,10 @@ export default function Detail(props) {
       return (
         <div className="col">
           <div className="row">
-            <div className="col-2 cinema_calender-img text-center mb-4">
+            <div className="col-4 col-sm-4 col-md-4 col-lg-2 cinema_calender-img text-center mb-4">
               <img src={detailFilm.hinhAnh} alt="" />
             </div>
-            <div className="col-10">
+            <div className="col-8 col-sm-8 col-md-8 col-lg-10">
               <h3 className="cinema_title-release">
                 {detailFilm.tenPhim}
                 {detailFilm.hot && (

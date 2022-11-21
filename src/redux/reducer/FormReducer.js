@@ -1,25 +1,43 @@
-import { LOGIN, USER_LOGIN } from "../type/FormType";
+import {
+  ACCESS_TOKEN,
+  LOGIN,
+  LOGOUT,
+  USER_UPDATE,
+  USER_LOGIN,
+  USER_PROFILE,
+} from "../type/FormType";
 
-
-let uLogin = null;
+let uLogin = undefined;
 
 if (localStorage.getItem(USER_LOGIN)) {
-    uLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
-    console.log(uLogin)
+  uLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
 }
 
 const initialState = {
-    uLogin:uLogin
-}
+  uLogin: uLogin,
+  userProfile: {},
+};
 
 export const FormReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    case LOGIN:
+      state.uLogin = { ...action.uLogin };
+      return { ...state };
 
-        case LOGIN:
-            state.uLogin = {...action.uLogin};
-            console.log(state.uLogin)
-            return {...state}
-        default:
-            return state
-    }
-}
+    case LOGOUT:
+      localStorage.removeItem(ACCESS_TOKEN);
+      let uLogout = localStorage.removeItem(USER_LOGIN);
+      state.uLogin = uLogout;
+      return { ...state };
+
+    case USER_PROFILE:
+      state.userProfile = action.userProfile;
+      return { ...state };
+
+    case USER_UPDATE:
+      state.uLogin = action.userUpdate;
+      return { ...state };
+    default:
+      return state;
+  }
+};

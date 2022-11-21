@@ -9,7 +9,7 @@ const EditMovie = (props) => {
   const {
     formik,
     imgSrc,
-    handleChangeDatePicker,
+    // handleChangeDatePicker,
     handleChangeSetFieldValue,
     handleChangeFile,
     thongTinPhim,
@@ -18,9 +18,12 @@ const EditMovie = (props) => {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
-
   const { handleSubmit, handleChange, setFieldValue, values } = formik;
-
+  const handleChangeDatePicker = (value, string) => {
+    const ngayKhoiChieui = moment(value);
+    ngayKhoiChieui._i = ngayKhoiChieui._d;
+    setFieldValue("ngayKhoiChieu", ngayKhoiChieui);
+  };
   return (
     <>
       <div>
@@ -86,11 +89,11 @@ const EditMovie = (props) => {
         >
           <DatePicker
             className="form-control w-50"
-            format={"DD/MM/YYYY"}
+            onChange={handleChangeDatePicker}
+            format="DD/MM/YYYY"
             name="ngayKhoiChieu"
             allowClear={false}
-            value={moment(values.ngayKhoiChieu)}
-            onChange={handleChangeDatePicker}
+            value={moment(formik.values?.ngayKhoiChieu)}
           />
         </Form.Item>
 

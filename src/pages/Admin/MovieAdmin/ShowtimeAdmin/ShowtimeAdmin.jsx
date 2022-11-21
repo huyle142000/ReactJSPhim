@@ -21,8 +21,6 @@ import {
 import { bothServiceToken } from "../../../../Service/BothTokenService";
 import { ACCESS_TOKEN } from "../../../../utils/setting";
 const ShowtimeAdmin = (props) => {
-  // console.log(localStorage.getItem(ACCESS_TOKEN))
-
   const dispatch = useDispatch();
   const { thongTinPhim } = useSelector((state) => state.MovieManagerReducer);
   const [state, setState] = useState({
@@ -38,9 +36,7 @@ const ShowtimeAdmin = (props) => {
         ...state,
         heThongRap: result.data.content,
       });
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     getCinema();
@@ -79,22 +75,17 @@ const ShowtimeAdmin = (props) => {
   // handleChange
   // thẻ của antd lấy ra các giá trị là value, option là object value và label
   const handleChangeHeThongRap = async (value) => {
-    
     try {
       const { data } = await bothServiceToken.get(
         `QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${value}`
       );
-      // console.log(data)
       setState({
         ...state,
         cumRap: data.content,
       });
-    } catch (error) {
-      console.log(error.response);
-    }
+    } catch (error) {}
   };
   const handleChangeMaRap = (value) => {
-    
     setFieldValue("maRap", value);
   };
   const handleChangeNgayChieu = (value) => {
@@ -127,7 +118,11 @@ const ShowtimeAdmin = (props) => {
             {thongTinPhim.maPhim} )
           </div>
           <div className="text-center mt-4">
-            <img src={thongTinPhim.hinhAnh} style={{width:"250px",height:"250px"}}alt="" />
+            <img
+              src={thongTinPhim.hinhAnh}
+              style={{ width: "250px", height: "250px" }}
+              alt=""
+            />
           </div>
         </div>
         <div className="col-6">

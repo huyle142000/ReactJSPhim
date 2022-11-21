@@ -12,6 +12,7 @@ import moment from "moment";
 import { PLAY_LOADING } from "../../redux/type/SpinnerType";
 import { NavLink } from "react-router-dom";
 import { history } from "../../App";
+import "./../DetailComponent/details.css";
 let currentDate = moment(new Date()).format("DDMMYY");
 
 const CinemaComponent = () => {
@@ -75,11 +76,7 @@ const CinemaComponent = () => {
             setShow(true);
           }}
         >
-          <img
-            src={cine.logo}
-            alt=""
-            style={{ width: "60px", height: "60px" }}
-          />
+          <img src={cine.logo} alt="" />
         </div>
       );
     });
@@ -87,32 +84,31 @@ const CinemaComponent = () => {
   const renderClusterCinema = () => {
     return arrCinemaCluster?.map((cluster, i) => {
       return (
-        <div
-          key={i}
-          onClick={() => {
-            setActive({ ...active, logoCluster: i });
-            setCode({
-              ...code,
-              cinemaReleaseCode: cluster.maCumRap,
-            });
-            setShow(true);
-          }}
-          className={
-            active.logoCluster === i
-              ? "logo_system cinema_logo-active row py-2"
-              : "logo_system row py-2"
-          }
-        >
-          <div className="col-3 d-flex align-items-center">
-            <img
-              src={code.imgLogo}
-              style={{ width: "40px", height: "40px" }}
-              alt=""
-            />
-          </div>
-          <div className="col-9 cinema_title-cluster">
-            <h5 className="cinema_title ">{cluster.tenCumRap}</h5>
-            <h6 className="cinema_title ">{cluster.diaChi}</h6>
+        <div key={i} className="col-3 col-sm-12">
+          <div
+            onClick={() => {
+              setActive({ ...active, logoCluster: i });
+              setCode({
+                ...code,
+                cinemaReleaseCode: cluster.maCumRap,
+              });
+              setShow(true);
+            }}
+            className={
+              active.logoCluster === i
+                ? "logo_system cinema_logo-active row py-2"
+                : "logo_system row py-2"
+            }
+          >
+            <div className="col-sm-12 text-center">
+              <div>
+                <img src={code.imgLogo} alt="" />
+              </div>
+            </div>
+            <div className="col-sm-12 cinema_title-cluster">
+              <h5 className="cinema_title ">{cluster.tenCumRap}</h5>
+              <h6 className="cinema_title ">{cluster.diaChi}</h6>
+            </div>
           </div>
         </div>
       );
@@ -165,11 +161,12 @@ const CinemaComponent = () => {
                       Suất chiếu:
                     </div>
                     <div>
-                      {movies.lstLichChieuTheoPhim.map((movie) => {
+                      {movies.lstLichChieuTheoPhim.map((movie, i) => {
                         let convertDate = moment(movie.ngayChieuGioChieu);
                         if (convertDate.format("DDMMYY") === release) {
                           return (
                             <button
+                              key={i}
                               className="btn btn_primary m-1"
                               onClick={() => {
                                 history.push("/booking", { path: movie });
@@ -203,12 +200,14 @@ const CinemaComponent = () => {
   return (
     <div className="cinema py-5 text-center mt-5">
       <h2 className="cinema_header">ĐẶT VÉ PHIM ONLINE</h2>
-      <div className="row cinema_header-logo">{renderSystemCinema()}</div>
+      <div className="row cinema_header-logo mt-5">{renderSystemCinema()}</div>
       <div className="row cinema__content mt-3">
-        <div className="col-3 cinema__content_left">
-          {renderClusterCinema()}
+        <div className="col-12 col-sm-3 cinema__content_left">
+          <div className="row cinema_ClusterCinema">
+            {renderClusterCinema()}
+          </div>
         </div>
-        <div className="col-9">
+        <div className="col-12 col-sm-9">
           <div className="cinema_calender-wrap-top">{renderCalender()}</div>
           <div className="cinema_calender-wrap-bot height-100 mt-3">
             <div className="row flex-column position-relative">

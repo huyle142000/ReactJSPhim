@@ -1,10 +1,102 @@
 .nav__bg {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-nav);
 }
+
 .navbar .nav-item a {
-    color: white;
+    color: var(--primary-color);
+    text-decoration: none;
 }
+
+.user_detail {
+    text-decoration: none !important;
+}
+
+.user_detail {
+    font-weight: 600;
+}
+
 .navbar .nav-item a:hover {
-    color: #ff1744;
+    color: orange;
     transition: all 0.3s;
+}
+
+.header_login {
+    position: relative;
+}
+
+.header_login:hover .user_profile {
+    opacity: 1;
+}
+
+.header_user {
+    padding: 0 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.4vw;
+}
+
+.header_user:hover {
+    cursor: pointer;
+    color: orange;
+    transition: all 0.3s;
+}
+
+.user_profile {
+    display: none;
+    position: absolute;
+    left: 0;
+    margin-top: 0.75rem;
+    border: 1px solid;
+    z-index: 10;
+    border-radius: 5px;
+    color: #000;
+    background: #fff;
+}
+
+.user_detail:hover,
+.user_logout:hover {
+    background: orange;
+    cursor: pointer;
+    color: #fff;
+}
+
+.user_profile a {
+    color: #000;
+    display: block;
+}
+
+.user_profile a:hover {
+    background: orange;
+    cursor: pointer;
+    color: #fff;
+}
+
+.user_profile.active {
+    display: block;
+}
+
+.user_profile .user_detail,
+.user_profile .user_logout {
+    padding: 10px;
+}
+
+.prevent--select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.nav-item {
+    font-weight: bold;
+}
+
+.header_user.header_account {
+    color: orange;
+}
+
+.header_user.header_account:hover {
+    opacity: 0.5;
 }

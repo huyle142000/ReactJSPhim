@@ -11,7 +11,6 @@ export function getBanner() {
       );
       dispatch({ type: GET_BANNER, payload: data.content });
     } catch (e) {
-      console.log(e.response);
     }
   };
 }

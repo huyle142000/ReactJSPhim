@@ -35,7 +35,7 @@
 .blogs_title {
     font-size: 4vw;
     text-align: center;
-    color: #fff;
+    color: var(--primary-color);
     font-weight: 600;
     margin-bottom: 5px;
 }
@@ -56,7 +56,7 @@
 }
 
 .blog_content-title h4 {
-    color: orange;
+    color: var(--pink-yellow);
     font-size: 1.4vw;
 
 }
