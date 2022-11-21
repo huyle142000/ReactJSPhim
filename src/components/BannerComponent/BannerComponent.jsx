@@ -292,11 +292,11 @@ export default function BannerComponent() {
                   <i className="fa-solid fa-star star star8"></i>
                   <i className="fa-solid fa-star star star9"></i>
                   <i className="fa-solid fa-star star star10"></i>
-                  <h2 className="text-shadow banner-dangchieu">
+                  <h2 className="text-shadow banner-dangchieu" id="movie">
                     Phim Đang Chiếu
                   </h2>
                 </div>
-                <div className="py-5 banner_top-img2" id="movie">
+                <div className="py-5 banner_top-img2">
                   <Slider {...settings2}>{renderPhimDangChieu()}</Slider>
                 </div>
               </div>
