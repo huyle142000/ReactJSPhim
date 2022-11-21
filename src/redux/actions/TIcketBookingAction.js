@@ -1,4 +1,5 @@
 import { Redirect, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { BOOK_TICKET, SEAT_BOOKING } from "../../utils/setting";
 import { GET_SEAT } from "../type/CinemaType";
@@ -28,6 +29,7 @@ export const bookTicketAction = (seatBookingModel) => {
         middleWareDispatch({
           type: CLEAR_SEAT,
         });
+        toast.success("Đặt vé thành công")
       })
       .catch((err) => {
       });

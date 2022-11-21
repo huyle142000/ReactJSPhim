@@ -46,21 +46,6 @@
     opacity: 0;
 }
 
-.cinema_release-label.active {
-    border-left: 1px solid yellow;
-    border-right: 1px solid yellow;
-
-}
-
-.cinema_release-label.active .cinema_release-date {
-    background-color: yellow;
-    border-radius: 50%;
-
-}
-
-.cinema_release-label.active .cinema_release-date {
-    color: #000;
-}
 
 .cinema_text {
     font-weight: 500
@@ -68,6 +53,11 @@
 
 .cinema_text-month {
     font-size: 25px;
+}
+
+.cinema_calender-wrap-bot img {
+    width: 100px;
+    height: 140px;
 }
 
 
@@ -212,9 +202,20 @@
         background: var(--bg-main-div);
         border: 1px solid #000;
     }
+
+    .cinema_calender-wrap-bot img {
+        width: 60px;
+        height: 85px;
+    }
+
 }
 
 @media (min-width: 576px) {
+    .cinema_calender-wrap-bot img {
+        width: 76px;
+        height: 90px;
+    }
+
     .cinema {
         padding: 0px 10px;
     }
@@ -232,8 +233,18 @@
     .cinema {
         padding: 0px 30px;
     }
+
+    .cinema_calender-wrap-bot img {
+        width: 100px;
+        height: 130px;
+    }
 }
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .cinema_calender-wrap-bot img {
+        width: 120px;
+        height: 150px;
+    }
+}
 
 @media (min-width: 1200px) {}

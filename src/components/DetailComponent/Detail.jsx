@@ -3,6 +3,7 @@ import moment from "moment";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { history } from "../../App";
 import { playTrailer } from "../../redux/actions/BannerAction";
 import { getReleaseFilm } from "../../redux/actions/MovieManagerAction";
 import IframeFilm from "../BannerComponent/IframeFilm/IframeFilm";
@@ -259,15 +260,14 @@ export default function Detail(props) {
               return (
                 <Fragment key={i}>
                   {convertDate.format("DDMMYY") === release && (
-                    <NavLink
-                      to={`/booking/${movie.maLichChieu}/${convertDate.format(
-                        "hh:mm"
-                      )}`}
+                    <button
+                      className="btn btn_primary m-2"
+                      onClick={() => {
+                        history.push("/booking", { path: movie });
+                      }}
                     >
-                      <button className="btn btn_primary m-2">
-                        {convertDate.format("hh:mm A")}
-                      </button>
-                    </NavLink>
+                      {convertDate.format("hh:mm A")}
+                    </button>
                   )}
                 </Fragment>
               );

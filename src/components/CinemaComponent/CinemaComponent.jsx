@@ -143,7 +143,6 @@ const CinemaComponent = () => {
                 <div className="col-3 text-center">
                   <img
                     src={movies.hinhAnh}
-                    style={{ height: "100%", width: "100%" }}
                     alt=""
                   />
                 </div>

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   bookTicketAction,
   getSeatBookingAction,
@@ -47,6 +48,7 @@ export default function Booking(props) {
   const bookTicketAPI = () => {
     //check empty selected seat
     if (arrSelectedSeat?.length === 0 || arrSelectedSeat === null) {
+      toast.warning("Bạn chọn ghế,vui lòng chọn ghế trước khi thanh toán ")
       return;
     }
 
