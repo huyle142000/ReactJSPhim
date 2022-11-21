@@ -84,7 +84,7 @@ body {
 
 .change_theme .fa-moon {
     color: black;
-    text-shadow: 0 0 24px black;
+    text-shadow: 0 0 10px red;
 }
 
 .change_theme .fa-sun {

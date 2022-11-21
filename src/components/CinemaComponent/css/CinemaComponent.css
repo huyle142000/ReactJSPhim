@@ -198,7 +198,6 @@
 
     .cinema__content_left .cinema_ClusterCinema::-webkit-scrollbar-track {
         border: 1px solid #000;
-        /* padding: 2px 0; */
         background-color: #fff;
     }
 

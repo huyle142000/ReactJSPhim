@@ -3,7 +3,7 @@ import "./../BannerComponent/banner.css";
 import "./blog.css";
 export default function BlogComponent() {
   return (
-    <div className="blog-wrap py-5">
+    <div className="blog-wrap py-5" id="blog">
       <div className="container ">
         <div className="position-relative d-inline">
           <span className="blogs_title"> Blogs</span>

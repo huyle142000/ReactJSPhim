@@ -198,7 +198,7 @@ const CinemaComponent = () => {
   };
 
   return (
-    <div className="cinema py-5 text-center mt-5">
+    <div className="cinema py-5 text-center mt-5" id="cinema">
       <h2 className="cinema_header">ĐẶT VÉ PHIM ONLINE</h2>
       <div className="row cinema_header-logo mt-5">{renderSystemCinema()}</div>
       <div className="row cinema__content mt-3">

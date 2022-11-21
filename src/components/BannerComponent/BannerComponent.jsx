@@ -144,59 +144,53 @@ export default function BannerComponent() {
   const renderPhim = () => {
     return arrPhim?.map((phim, i) => {
       let convertDate = moment(phim.ngayKhoiChieu).format("DDMMYY");
-        return (
-          <div key={phim.maPhim} className="position-relative">
-            <div
-              className="banner"
-              style={{
-                backgroundImage: `url(${phim.hinhAnh})`,
-                filter: "grayscale(10%)",
-              }}
-            >
-              <div className="container banner_content-mid">
-                <div className="row">
-                  <div className="col-sm-12 col-xs-6 col-md-6 col-xl-6 ">
-                    <img
-                      src={phim.hinhAnh}
-                      alt=""
-                      className="mr-auto ml-auto"
-                    />
-                  </div>
-                  <div className="col-sm-12 col-xs-6 col-md-6 col-xl-6">
-                    <div className="mt-auto">
-                      <h2>{phim.tenPhim}</h2>
-                      <h4>
-                        {phim.moTa.length > 50
-                          ? phim.moTa.substring(0, 150) + "..."
-                          : phim.moTa}
-                      </h4>
-                      <div className="mt-4">
-                        <button
-                          className="btn btn_white mr-3"
-                          onClick={() => {
-                            dispatch(
-                              playTrailer(
-                                <IframeFilm phim={phim} isContent={true} />
-                              )
-                            );
-                          }}
-                        >
-                          Play Trailer
-                        </button>
-                        <NavLink to={`/detail/${phim.maPhim}`}>
-                          <button className="btn btn_primary">
-                            Buy ticket
-                          </button>
-                        </NavLink>
-                      </div>
+      return (
+        <div key={phim.maPhim} className="position-relative">
+          <div
+            className="banner"
+            style={{
+              backgroundImage: `url(${phim.hinhAnh})`,
+              filter: "grayscale(10%)",
+            }}
+          >
+            <div className="container banner_content-mid">
+              <div className="row">
+                <div className="col-sm-12 col-xs-6 col-md-6 col-xl-6 ">
+                  <img src={phim.hinhAnh} alt="" className="mr-auto ml-auto" />
+                </div>
+                <div className="col-sm-12 col-xs-6 col-md-6 col-xl-6">
+                  <div className="mt-auto">
+                    <h2>{phim.tenPhim}</h2>
+                    <h4>
+                      {phim.moTa.length > 50
+                        ? phim.moTa.substring(0, 150) + "..."
+                        : phim.moTa}
+                    </h4>
+                    <div className="mt-4">
+                      <button
+                        className="btn btn_white mr-3"
+                        onClick={() => {
+                          dispatch(
+                            playTrailer(
+                              <IframeFilm phim={phim} isContent={true} />
+                            )
+                          );
+                        }}
+                      >
+                        Play Trailer
+                      </button>
+                      <NavLink to={`/detail/${phim.maPhim}`}>
+                        <button className="btn btn_primary">Buy ticket</button>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="banner_overlay-dark"></div>
             </div>
+            <div className="banner_overlay-dark"></div>
           </div>
-        );
+        </div>
+      );
     });
   };
   const renderPhimDangChieu = () => {
@@ -281,7 +275,7 @@ export default function BannerComponent() {
   };
   return (
     <>
-      <div className="">
+      <div>
         <Slider {...settings}>{renderPhim()}</Slider>
         <div className="banner_top py-5">
           <div className="container banner_top-img1">
@@ -302,7 +296,7 @@ export default function BannerComponent() {
                     Phim Đang Chiếu
                   </h2>
                 </div>
-                <div className="py-5 banner_top-img2">
+                <div className="py-5 banner_top-img2" id="movie">
                   <Slider {...settings2}>{renderPhimDangChieu()}</Slider>
                 </div>
               </div>
