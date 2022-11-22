@@ -11,12 +11,18 @@ import "./admin.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route } from "react-router-dom";
+import { history } from "../../App";
 const { Header, Sider, Content } = Layout;
-
 
 export default function AdminTemplate(props) {
   const [collapsed, setCollapsed] = useState(false);
   const { Component, ...rest } = props;
+  const ulogin = useSelector((state) => state.FormReducer.uLogin);
+  useEffect(() => {
+    if (ulogin?.maLoaiNguoiDung.trim().toLowerCase() !== "quantri") {
+      history.push("/home");
+    }
+  }, []);
   return (
     <Route
       {...rest}
@@ -28,7 +34,7 @@ export default function AdminTemplate(props) {
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={["1"]}
                 items={[
                   {
                     key: "1",
@@ -91,4 +97,3 @@ export default function AdminTemplate(props) {
     />
   );
 }
-

@@ -1,14 +1,15 @@
 .bg_form {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   background: linear-gradient(#141e30, #243b55);
   height: 100vh;
 }
+
 .login_box {
   padding: 40px;
   background: #212529;
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
 }
 
@@ -26,18 +27,19 @@
 
 .login_box .user_box input {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 3rem;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
 }
+
 .login_box .user_box label {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   padding: 10px 0;
   font-size: 16px;
@@ -46,10 +48,16 @@
   transition: .5s;
 }
 
-.login_box .user_box input:focus ~ label,
-.login_box .user_box input:valid ~ label {
-  top: -30px;
+.login_box .user_box input:focus~label,
+.login_box .user_box input:valid~label {
+  top: -14px;
   left: 0;
   color: orange;
   font-size: 12px;
+}
+
+.form_submit {
+  padding: 6px;
+  background: orange;
+  font-weight: 600;
 }

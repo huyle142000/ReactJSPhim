@@ -1,3 +1,4 @@
+import { history } from "../../App";
 import {
   ACCESS_TOKEN,
   LOGIN,
@@ -28,6 +29,7 @@ export const FormReducer = (state = initialState, action) => {
       localStorage.removeItem(ACCESS_TOKEN);
       let uLogout = localStorage.removeItem(USER_LOGIN);
       state.uLogin = uLogout;
+      history.push("/home");
       return { ...state };
 
     case USER_PROFILE:

@@ -19,19 +19,21 @@ export default function Header() {
   const { uLogin } = useSelector((state) => state.FormReducer);
   const dispatch = useDispatch();
   let [changeNav, setNav] = useState(false);
-  console.log(changeNav);
   useEffect(() => {
     renderAccount();
   }, [uLogin]);
   useEffect(() => {
     window.addEventListener("scroll", () => {
       let scroll = window.scrollY;
-      let divMovie = document.querySelector("#movie").getBoundingClientRect().top;
-      console.log(divMovie);
-      if (divMovie <= 0) {
-        setNav(true);
-        console.log(changeNav)
-      } else if (scroll === 0) {
+      let divMovie = document.querySelector("#movie");
+      if (divMovie) {
+        let boudingDivMovie = divMovie?.getBoundingClientRect().top;
+        if (boudingDivMovie <= 0) {
+          setNav(true);
+        } else if (scroll === 0) {
+          setNav(false);
+        }
+      } else {
         setNav(false);
       }
     });

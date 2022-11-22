@@ -22,7 +22,7 @@
     --bg-dark: black;
     --bg-nav: #fff;
     --bg-main-body: #fff;
-    --bg-main-header-fixed: rgba(255, 255, 255, 0.86);
+    --bg-main-header-fixed: rgba(255, 255, 255, 1);
     --bg-logo: rgb(255, 240, 246);
     /* btn color */
 
@@ -45,7 +45,7 @@ body.dark {
     --bg-nav: black;
     --bg-calendar: yellow;
     --bg-main-header: black;
-    --bg-main-header-fixed: rgba(28, 56, 141, 0.763);
+    --bg-main-header-fixed: rgba(28, 56, 141, 1);
 
     --bg-main-body: rgb(14, 22, 46);
     --bg-main-div: #182028;

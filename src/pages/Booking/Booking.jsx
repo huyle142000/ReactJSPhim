@@ -12,24 +12,39 @@ import { PLAY_LOADING, STOP_LOADING } from "../../redux/type/SpinnerType";
 import { SELECT_TICKET } from "../../redux/type/TIcketBookingTypes";
 import "./Booking.css";
 
+import { history } from "../../App";
+import { OPEN_MODAL } from "../../redux/type/ModalType";
+import { Link } from "react-router-dom";
+import { OPEN_LOGIN } from "../../redux/type/FormType";
+import Login from "../Login/Login";
 export default function Booking(props) {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  let { uLogin } = useSelector((state) => state.FormReducer);
+
   const { arrSelectedSeat, movieInfo, arrSeat } = useSelector(
     (state) => state.TicketBookingReducer
   );
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-  const { maLichChieu, ngayChieuGioChieu } = location.state.path;
+
+  if (location.state?.path) {
+    var { maLichChieu, ngayChieuGioChieu } = location.state?.path;
+  }
   useSelector((state) => state.PreloadingReducer);
   const { tenPhim, tenCumRap, diaChi, hinhAnh } = movieInfo;
-
   useEffect(() => {
-    getSeatBookingAPI(maLichChieu);
-    window.scrollTo(0, 0);
-    dispatch({ type: PLAY_LOADING });
-    setTimeout(() => {
-      dispatch({ type: STOP_LOADING });
-    }, 1800);
+    if (uLogin) {
+      getSeatBookingAPI(maLichChieu);
+      window.scrollTo(0, 0);
+      dispatch({ type: PLAY_LOADING });
+      setTimeout(() => {
+        dispatch({ type: STOP_LOADING });
+      }, 1800);
+    } else {
+      dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
+      toast.warning("Bạn phải đăng nhập trước khi đặt ghế!");
+      history.push("/");
+      // window.scrollTo(0, 0);
+    }
   }, []);
 
   const getSeatBookingAPI = (showTimeId) => {
@@ -48,7 +63,7 @@ export default function Booking(props) {
   const bookTicketAPI = () => {
     //check empty selected seat
     if (arrSelectedSeat?.length === 0 || arrSelectedSeat === null) {
-      toast.warning("Bạn chọn ghế,vui lòng chọn ghế trước khi thanh toán ")
+      toast.warning("Bạn chọn ghế,vui lòng chọn ghế trước khi thanh toán ");
       return;
     }
 
@@ -120,7 +135,9 @@ export default function Booking(props) {
         <Fragment key={seat.maGhe}>
           <div className="col-4 pl-4 ticket_payment">{seat.tenGhe}</div>
           <div className="col-4 ticket_payment">{seat.loaiGhe}</div>
-          <div className="col-4 ticket_payment">{seat.giaVe.toLocaleString()}</div>
+          <div className="col-4 ticket_payment">
+            {seat.giaVe.toLocaleString()}
+          </div>
         </Fragment>
       );
     });
@@ -202,7 +219,9 @@ export default function Booking(props) {
           </div>
           <div className="col-12 col-sm-12 col-lg-3 ">
             <div className="card__shadow pl-3 pb-3">
-              <div className="ticket__info text-center">{renderMovieInfo()}</div>
+              <div className="ticket__info text-center">
+                {renderMovieInfo()}
+              </div>
             </div>
           </div>
         </div>

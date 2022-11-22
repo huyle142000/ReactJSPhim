@@ -48,18 +48,16 @@ export const loginAction = (userInfo) => {
         result.data.content.maLoaiNguoiDung.trim().toLowerCase() === "quantri"
       ) {
         history.push("/admin");
-        dispatch2({type:CLOSE_MODAL});
-
       }
-      
+      dispatch2({ type: CLOSE_MODAL });
+
       dispatch2(action);
 
       let userInfo = JSON.stringify(result.data.content);
       localStorage.setItem(USER_LOGIN, userInfo);
     });
     promise.catch((error) => {
-      console.log(error.response?.data);
-      toast.error("Login failed!", {
+      toast.error(`Login failed! ${error.response?.data.content}`, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

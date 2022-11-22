@@ -3,13 +3,18 @@ import moment from "moment";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import { history } from "../../App";
+import Login from "../../pages/Login/Login";
 import { playTrailer } from "../../redux/actions/BannerAction";
 import { getReleaseFilm } from "../../redux/actions/MovieManagerAction";
+import { OPEN_LOGIN } from "../../redux/type/FormType";
 import IframeFilm from "../BannerComponent/IframeFilm/IframeFilm";
 import "./details.css";
 export default function Detail(props) {
   let { detailFilm } = useSelector((state) => state.MovieManagerReducer);
+  let { uLogin } = useSelector((state) => state.FormReducer);
+
   let dispatch = useDispatch();
   let { maPhim } = props.match.params;
   //   State
@@ -21,6 +26,7 @@ export default function Detail(props) {
   const [activeDate, setActiveDate] = useState({
     date: 0,
   });
+
   const [show, setShow] = useState(false);
   //   Effect
   useEffect(() => {
@@ -263,7 +269,15 @@ export default function Detail(props) {
                     <button
                       className="btn btn_primary m-2"
                       onClick={() => {
-                        history.push("/booking", { path: movie });
+                        if (uLogin) {
+                          history.push("/booking", { path: movie });
+                        } else {
+                          history.push("/home");
+                          toast.warning(
+                            "Bạn cần phải đăng nhập trước khi đặt vé"
+                          );
+                          dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
+                        }
                       }}
                     >
                       {convertDate.format("hh:mm A")}
