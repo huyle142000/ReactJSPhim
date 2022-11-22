@@ -12,6 +12,7 @@ import Login from "../../pages/Login/Login";
 import { toast } from "react-toastify";
 import { bothServiceToken } from "../../Service/BothTokenService";
 import { history } from "../../App";
+import { CLOSE_MODAL } from "../type/ModalType";
 
 export const loginAction = (userInfo) => {
   return (dispatch2) => {
@@ -43,12 +44,14 @@ export const loginAction = (userInfo) => {
         type: LOGIN,
         uLogin: result.data.content,
       };
-      console.log(result.data.content);
       if (
         result.data.content.maLoaiNguoiDung.trim().toLowerCase() === "quantri"
       ) {
         history.push("/admin");
+        dispatch2({type:CLOSE_MODAL});
+
       }
+      
       dispatch2(action);
 
       let userInfo = JSON.stringify(result.data.content);
