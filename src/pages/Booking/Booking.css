@@ -122,6 +122,9 @@
     color: var(--pink-yellow);
 
 }
+.ticket_payment{
+    color: white
+}
 
 .movie__info h3 {
     font-size: 1.6vw;

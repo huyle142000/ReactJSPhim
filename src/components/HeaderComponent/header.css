@@ -1,10 +1,38 @@
 .nav__bg {
-    background-color: var(--bg-nav);
+    background-color: var(--bg-main-body);
+    transition: all 0.5s;
+    border-bottom: 1px solid gray;
+}
+
+.nav__bg.fixed {
+    position: fixed;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    background-color: var(--bg-main-header-fixed);
+}
+
+.nav__bg.fixed .logo_nav-cine {
+    transition: all 0.5s;
+    width: 50px;
+    height: 40px;
 }
 
 .navbar .nav-item a {
     color: var(--primary-color);
     text-decoration: none;
+}
+
+
+.logo_nav-cine {
+    transition: all 0.5s;
+
+    background-image: url(./movielogo.png);
+    height: 60px;
+    width: 70px;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .user_detail {

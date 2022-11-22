@@ -118,9 +118,9 @@ export default function Booking(props) {
     return arrSelectedSeat?.map((seat) => {
       return (
         <Fragment key={seat.maGhe}>
-          <div className="col-4 pl-4">{seat.tenGhe}</div>
-          <div className="col-4">{seat.loaiGhe}</div>
-          <div className="col-4">{seat.giaVe.toLocaleString()}</div>
+          <div className="col-4 pl-4 ticket_payment">{seat.tenGhe}</div>
+          <div className="col-4 ticket_payment">{seat.loaiGhe}</div>
+          <div className="col-4 ticket_payment">{seat.giaVe.toLocaleString()}</div>
         </Fragment>
       );
     });

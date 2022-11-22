@@ -18,9 +18,24 @@ export default function Header() {
   const [active, setActive] = useState(false);
   const { uLogin } = useSelector((state) => state.FormReducer);
   const dispatch = useDispatch();
+  let [changeNav, setNav] = useState(false);
+  console.log(changeNav);
   useEffect(() => {
     renderAccount();
   }, [uLogin]);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      let scroll = window.scrollY;
+      let divMovie = document.querySelector("#movie").getBoundingClientRect().top;
+      console.log(divMovie);
+      if (divMovie <= 0) {
+        setNav(true);
+        console.log(changeNav)
+      } else if (scroll === 0) {
+        setNav(false);
+      }
+    });
+  }, []);
 
   const openModalLogin = () =>
     dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
@@ -28,10 +43,6 @@ export default function Header() {
     dispatch({ type: OPEN_REGISTER, modalRegister: <Register /> });
   const logout = () => dispatch({ type: LOGOUT });
   const goToProfile = () => {
-    // let getService = new BothTokenService();
-    // let action = getService.post("QuanLyNguoiDung/ThongTinTaiKhoan");
-    // dispatch(action)
-
     let userProfile = JSON.parse(localStorage.getItem(USER_LOGIN));
     dispatch({ type: USER_PROFILE, userProfile: userProfile });
   };
@@ -98,11 +109,11 @@ export default function Header() {
   };
 
   return (
-    <header className="nav__bg">
+    <header className={changeNav ? "nav__bg fixed" : "nav__bg"}>
       <div className="container">
         <nav className="navbar navbar-expand-sm">
           <NavLink className="navbar-brand" to="/home">
-            <img className="img-fluid" src="../../logo3.png" alt="" />
+            <div className="logo_nav-cine" />
           </NavLink>
           <button
             className="navbar-toggler d-lg-none"
@@ -128,9 +139,9 @@ export default function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                  <a className="nav-link" href="#cinema">
-                    Cinema
-                  </a>
+                <a className="nav-link" href="#cinema">
+                  Cinema
+                </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#blog">

@@ -32,6 +32,8 @@ export const bookTicketAction = (seatBookingModel) => {
         toast.success("Đặt vé thành công")
       })
       .catch((err) => {
+        toast.err("Đặt vé thất bại")
+        
       });
   };
 };

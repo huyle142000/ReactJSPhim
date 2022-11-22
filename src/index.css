@@ -15,14 +15,14 @@
     --white-yellow: white;
     --pink-white: pink;
     --dark-pink: black;
-    --border-gb:rgb(204, 201, 201);
-        /* color background */
-        --bg-calendar: rgb(248, 103, 161);
+    --border-gb: rgb(204, 201, 201);
+    /* color background */
+    --bg-calendar: rgb(248, 103, 161);
     --bg-main-div: rgb(246, 60, 94);
     --bg-dark: black;
     --bg-nav: #fff;
     --bg-main-body: #fff;
-    --bg-main-header: #ffd0d0;
+    --bg-main-header-fixed: rgba(255, 255, 255, 0.86);
     --bg-logo: rgb(255, 240, 246);
     /* btn color */
 
@@ -45,9 +45,11 @@ body.dark {
     --bg-nav: black;
     --bg-calendar: yellow;
     --bg-main-header: black;
+    --bg-main-header-fixed: rgba(28, 56, 141, 0.763);
+
     --bg-main-body: rgb(14, 22, 46);
     --bg-main-div: #182028;
-    --border-gb:rgb(105, 148, 192);
+    --border-gb: rgb(105, 148, 192);
 
     --bg-logo: rgb(38, 63, 117);
 
