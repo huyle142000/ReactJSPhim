@@ -391,12 +391,14 @@ export default function Detail(props) {
           <div className="col-9">
             <div className="cinema_calender-wrap-top">{renderCalender()}</div>
             <div className="cinema_calender-wrap-bot height-100 mt-3">
-              {show && (
-                <div className="spinner">
-                  <div className="spinner-img"></div>
-                </div>
-              )}
-              <div className="row flex-column">{renderCinemaRelease()}</div>
+              <div className="row flex-column position-relative">
+                {show && (
+                  <div className="spinner">
+                    <div className="spinner-img"></div>
+                  </div>
+                )}
+                {renderCinemaRelease()}
+              </div>
             </div>
           </div>
         </div>
