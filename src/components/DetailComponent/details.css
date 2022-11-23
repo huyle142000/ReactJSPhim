@@ -18,12 +18,12 @@
 .cinema_banner-detail .cinema_title-release {
     font-size: 40px;
 }
-
+.banner_detail-right {
+    margin: auto;
+}
 .banner_detail-right div {
     margin-top: 20px
 }
-
-
 
 .logo_system {
     cursor: pointer;
@@ -153,12 +153,6 @@
     justify-content: center;
 }
 
-.cinema_calender-wrap-bot img {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-}
-
 .cinema_calender-img {
     max-height: 200px;
 
@@ -247,6 +241,10 @@
     }
 }
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .cinema_banner-detail.banner {
+        height: 500px
+    }
+}
 
 @media (min-width: 1200px) {}
