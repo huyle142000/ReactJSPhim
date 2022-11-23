@@ -1,3 +1,19 @@
+// useEffect(() => {
+//   window.addEventListener("scroll", () => {
+//     let scroll = window.scrollY;
+//     let divMovie = document.querySelector("#movie");
+//     if (divMovie) {
+//       let boudingDivMovie = divMovie?.getBoundingClientRect().top;
+//       if (boudingDivMovie <= 0) {
+//         setNav(true);
+//       } else if (scroll === 0) {
+//         setNav(false);
+//       }
+//     } else {
+//       setNav(false);
+//     }
+//   });
+// }, []);
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -22,22 +38,6 @@ export default function Header() {
   useEffect(() => {
     renderAccount();
   }, [uLogin]);
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      let scroll = window.scrollY;
-      let divMovie = document.querySelector("#movie");
-      if (divMovie) {
-        let boudingDivMovie = divMovie?.getBoundingClientRect().top;
-        if (boudingDivMovie <= 0) {
-          setNav(true);
-        } else if (scroll === 0) {
-          setNav(false);
-        }
-      } else {
-        setNav(false);
-      }
-    });
-  }, []);
 
   const openModalLogin = () =>
     dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
@@ -73,11 +73,12 @@ export default function Header() {
               }}
               className="user_detail"
             >
-              User Profile
+              Profile
             </NavLink>
             <div
               onClick={() => {
                 logout();
+                setActive(false);
               }}
               className="user_logout"
             >

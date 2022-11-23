@@ -43,7 +43,7 @@ export default function Booking(props) {
       dispatch({ type: OPEN_LOGIN, modalLogin: <Login /> });
       toast.warning("Bạn phải đăng nhập trước khi đặt ghế!");
       history.push("/");
-      // window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
   }, []);
 
@@ -83,6 +83,7 @@ export default function Booking(props) {
     });
     dispatch(action);
     history.push("/");
+    window.scroll(0, 0);
   };
 
   const renderSeat = () => {

@@ -113,12 +113,14 @@ export const registerAction = (userInfo) => {
 export const getUserInfoAction = () => {
   return (dispatch2) => {
     bothServiceToken
-      .post(USER_PROFILE_API)
+      .post(`${USER_PROFILE_API}`)
       .then((result) => {
+
         let action = {
           type: USER_PROFILE,
           userProfile: result.data.content,
         };
+        console.log(result.data.content)
         dispatch2(action);
       })
       .catch((error) => {

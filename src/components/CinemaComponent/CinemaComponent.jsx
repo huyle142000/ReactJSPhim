@@ -13,6 +13,9 @@ import { PLAY_LOADING } from "../../redux/type/SpinnerType";
 import { NavLink } from "react-router-dom";
 import { history } from "../../App";
 import "./../DetailComponent/details.css";
+import { OPEN_LOGIN } from "../../redux/type/FormType";
+import Login from "../../pages/Login/Login";
+import { toast } from "react-toastify";
 let currentDate = moment(new Date()).format("DDMMYY");
 
 const CinemaComponent = () => {
@@ -31,6 +34,7 @@ const CinemaComponent = () => {
   });
   const { renderCalender, release, show, setShow } = Calendar();
 
+  let { uLogin } = useSelector((state) => state.FormReducer);
   useEffect(() => {
     dispatch(getAllCinema());
   }, []);
@@ -141,10 +145,7 @@ const CinemaComponent = () => {
             <div className="col">
               <div className="row">
                 <div className="col-3 text-center">
-                  <img
-                    src={movies.hinhAnh}
-                    alt=""
-                  />
+                  <img src={movies.hinhAnh} alt="" />
                 </div>
                 <div className="col-9 text-left">
                   <h3 className="cinema_title-release">
@@ -168,7 +169,17 @@ const CinemaComponent = () => {
                               key={i}
                               className="btn btn_primary m-1"
                               onClick={() => {
-                                history.push("/booking", { path: movie });
+                                if (uLogin) {
+                                  history.push("/booking", { path: movie });
+                                } else {
+                                  dispatch({
+                                    type: OPEN_LOGIN,
+                                    modalLogin: <Login />,
+                                  });
+                                  toast.warning(
+                                    "Bạn phải đăng nhập trước khi đặt ghế!"
+                                  );
+                                }
                               }}
                             >
                               {convertDate.format("hh:mm")}

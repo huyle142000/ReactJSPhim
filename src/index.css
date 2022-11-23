@@ -75,8 +75,8 @@ body {
 /*Theme */
 .change_theme {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 5%;
+    right: 1%;
     z-index: 123;
 }
 
@@ -293,8 +293,8 @@ body {
     }
 
     .btn_primary {
-        font-size: 2.5vw;
-        padding: 4px;
+        font-size: 2.2vw;
+        padding: 2px;
     }
 
     .title-basic-orange {
@@ -307,8 +307,8 @@ body {
     }
 
     .btn_white {
-        font-size: 2.5vw;
-        padding: 4px;
+        font-size: 2.2vw;
+        padding: 2px;
     }
 
 

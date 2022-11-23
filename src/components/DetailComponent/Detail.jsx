@@ -272,7 +272,6 @@ export default function Detail(props) {
                         if (uLogin) {
                           history.push("/booking", { path: movie });
                         } else {
-                          history.push("/home");
                           toast.warning(
                             "Bạn cần phải đăng nhập trước khi đặt vé"
                           );

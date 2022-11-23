@@ -118,7 +118,15 @@
 .ticket__movie__date {
     white-space: nowrap;
 }
-
+.history_user td{
+    color: var(--primary-color);
+}
+.history_user td h2{
+    padding: 50px;
+}
+.history_user td h6{
+   
+}
 /* ------------------------------- RESPONSIVE ------------------------------- */
 @media screen and (max-width: 992px) {
     .ticket__history .ticket__movie__img {
@@ -136,6 +144,7 @@
         font-size: 0.75rem;
     }
 }
+
 
 @media screen and (max-width: 540px) {
     .ticket__history th,
