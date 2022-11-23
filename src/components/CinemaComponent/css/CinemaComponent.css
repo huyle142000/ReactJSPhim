@@ -56,6 +56,7 @@
 }
 
 .cinema_calender-wrap-bot img {
+    border-radius: 8px;
     width: 100px;
     height: 140px;
 }
@@ -208,6 +209,10 @@
         height: 85px;
     }
 
+    .cinema_header-logo {
+        padding: 0 0;
+    }
+
 }
 
 @media (min-width: 576px) {
@@ -227,6 +232,10 @@
     .cinema_title-release {
         font-size: 16px;
     }
+
+    .cinema_header-logo {
+        padding: 0 30px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -244,6 +253,10 @@
     .cinema_calender-wrap-bot img {
         width: 120px;
         height: 150px;
+    }
+
+    .cinema_header-logo {
+        padding: 0 50px;
     }
 }
 

@@ -12,7 +12,7 @@ import { OPEN_LOGIN } from "../../redux/type/FormType";
 import IframeFilm from "../BannerComponent/IframeFilm/IframeFilm";
 import "./details.css";
 import "./../BannerComponent/banner.css";
-import"./../CinemaComponent/css/CinemaComponent.css";
+import "./../CinemaComponent/css/CinemaComponent.css";
 
 export default function Detail(props) {
   let { detailFilm } = useSelector((state) => state.MovieManagerReducer);
@@ -340,7 +340,7 @@ export default function Detail(props) {
         }}
       >
         <div className="row banner_content-mid">
-          <div className="col-4 position-relative detail_banner-img">
+          <div className="col-4  col-sm-4 position-relative detail_banner-img">
             <img src={detailFilm?.hinhAnh} alt="" />
             <div
               className="position-absolute banner_wrap-icon-mini"
@@ -355,7 +355,7 @@ export default function Detail(props) {
               <i className="fa-regular fa-circle-play  banner_play_icon-mini"></i>
             </div>
           </div>
-          <div className="col-8 banner_detail-right text-left">
+          <div className="col-8 col-sm-8 banner_detail-right text-left">
             <h3 className="cinema_title-release">
               {detailFilm?.tenPhim}
               {detailFilm?.hot && (

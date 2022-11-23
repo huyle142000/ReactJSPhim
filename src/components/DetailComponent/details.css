@@ -1,10 +1,9 @@
 
 .cinema_banner-detail.banner {
-    height: 430px
+    height: 500px
 }
 
 .cinema_banner-detail .banner_content-mid {
-    padding: 60px 30px;
 }
 
 .cinema_banner-detail .banner_content-mid img {
@@ -165,9 +164,14 @@
 
 }
 
-.cinema_calender-img img {}
 
 @media (max-width: 576px) {
+    .banner_detail-right div {
+        margin-top: 5px
+    }
+    .cinema_banner-detail.banner {
+        height: 300px
+    }
     .cinema_release-label {
         padding: 4px;
     }
@@ -223,8 +227,17 @@
 }
 
 @media (min-width: 576px) {
+    .cinema_banner-detail .banner_content-mid {
+        padding: 20px;
+    }
     .cinema {
         padding: 0px 25px;
+    }
+    .banner_detail-right div {
+        margin-top: 10px
+    }
+    .cinema_banner-detail.banner {
+        height: 400px;
     }
 }
 

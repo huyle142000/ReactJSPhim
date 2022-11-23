@@ -75,8 +75,8 @@ body {
 /*Theme */
 .change_theme {
     position: fixed;
-    bottom: 5%;
-    right: 1%;
+    bottom: 6%;
+    right: 3%;
     z-index: 123;
 }
 
@@ -198,7 +198,7 @@ body {
 .title-basic-white {
     font-weight: 600;
     color: white;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .btn_div {
@@ -302,7 +302,7 @@ body {
     }
 
     .title-basic-white {
-        font-size: 10px;
+        font-size: 11px;
 
     }
 
@@ -310,12 +310,14 @@ body {
         font-size: 2.2vw;
         padding: 2px;
     }
-
+    .change_theme i {
+        font-size: 4vw;
+    }
 
 }
 
 @media (min-width: 576px) {
-
+    
     .banner_icon-right,
     .banner_icon-left {
         font-size: 32px;
@@ -325,6 +327,10 @@ body {
     .btn_white {
         font-size: 14px;
     }
+    .title-basic-white{
+        font-size: 14px;
+    }
+    
 }
 
 @media (min-width: 768px) {
@@ -336,6 +342,9 @@ body {
 }
 
 @media (min-width: 992px) {
+    .title-basic-white{
+        font-size: 18px;
+    }
 
     .btn_primary,
     .btn_white {
