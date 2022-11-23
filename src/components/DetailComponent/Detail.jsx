@@ -11,6 +11,9 @@ import { getReleaseFilm } from "../../redux/actions/MovieManagerAction";
 import { OPEN_LOGIN } from "../../redux/type/FormType";
 import IframeFilm from "../BannerComponent/IframeFilm/IframeFilm";
 import "./details.css";
+import "./../BannerComponent/banner.css";
+import"./../CinemaComponent/css/CinemaComponent.css";
+
 export default function Detail(props) {
   let { detailFilm } = useSelector((state) => state.MovieManagerReducer);
   let { uLogin } = useSelector((state) => state.FormReducer);
@@ -363,7 +366,7 @@ export default function Detail(props) {
             </h3>
             <div>
               <span className="title-basic-orange"> Đánh giá :</span>
-              <span>
+              <span className="text-light">
                 {" "}
                 {detailFilm.danhGia}
                 <i className="fa-solid fa-star title-basic"></i>
