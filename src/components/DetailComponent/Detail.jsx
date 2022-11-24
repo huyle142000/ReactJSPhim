@@ -34,6 +34,7 @@ export default function Detail(props) {
   //   Effect
   useEffect(() => {
     dispatch(getReleaseFilm(maPhim));
+    window.scroll(0, 0);
   }, []);
   useEffect(() => {
     var date = new Date();
