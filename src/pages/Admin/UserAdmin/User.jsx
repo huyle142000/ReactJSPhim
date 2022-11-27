@@ -36,13 +36,7 @@ const User = (props) => {
       dataIndex: "taiKhoan",
       key: "taiKhoan",
       width: 200,
-      sorter: (a, b) => {
-        let tenphimA = a.tenPhim.toLowerCase().trim();
-        let tenphimB = b.tenPhim.toLowerCase().trim();
-
-        if (tenphimA > tenphimB) return 1;
-        return -1;
-      },
+      sorter: (a, b) => a.taiKhoan - b.taiKhoan,
     },
     {
       title: "Họ và Tên",
