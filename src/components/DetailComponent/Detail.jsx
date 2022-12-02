@@ -13,6 +13,7 @@ import IframeFilm from "../BannerComponent/IframeFilm/IframeFilm";
 import "./details.css";
 import "./../BannerComponent/banner.css";
 import "./../CinemaComponent/css/CinemaComponent.css";
+import { CLOSE_MODAL } from "../../redux/type/ModalType";
 
 export default function Detail(props) {
   let { detailFilm } = useSelector((state) => state.MovieManagerReducer);
@@ -34,6 +35,8 @@ export default function Detail(props) {
   //   Effect
   useEffect(() => {
     dispatch(getReleaseFilm(maPhim));
+    dispatch({ type: CLOSE_MODAL });
+
     window.scroll(0, 0);
   }, []);
   useEffect(() => {
